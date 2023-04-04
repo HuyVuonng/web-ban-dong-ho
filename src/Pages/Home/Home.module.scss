@@ -2,3 +2,104 @@
     width: 1200px;
     margin: auto;
 }
+.lable {
+    font-size: 25.6px;
+    display: inline-block;
+}
+
+.lable + .lable {
+    margin-left: 15px;
+}
+.best-seller {
+    margin-top: 20px;
+
+    .best-seller-product {
+        display: grid;
+        grid-template-columns: auto auto auto auto;
+        column-gap: 50px;
+    }
+}
+
+.product2 {
+    margin-top: 50px;
+    .lable-products {
+        .lable {
+            &:hover {
+                color: #c89979;
+                cursor: pointer;
+            }
+
+            &.active {
+                color: #c89979;
+                font-size: 3rem;
+                user-select: none;
+            }
+        }
+    }
+
+    .products {
+        display: grid;
+        grid-template-columns: auto auto auto auto auto;
+        column-gap: 15px;
+    }
+}
+
+.news {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    column-gap: 10px;
+    position: relative;
+}
+
+.news::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    bottom: 30px;
+    left: 0;
+    height: 1.5px;
+    background-color: #c89979;
+}
+
+.dk-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 55px;
+}
+
+.dk-title {
+    font-size: 2.6rem;
+}
+.dk-input1 {
+    background-color: #f1f1f1;
+    border: none;
+    width: 360px;
+    height: 100%;
+    font-size: 1.4rem;
+    line-height: 1.4rem;
+    outline: none;
+    padding-left: 10px;
+}
+
+.dk-btn {
+    border: none;
+    outline: none;
+    background-color: #c89979;
+    height: 100%;
+    font-size: 1.4rem;
+    line-height: 1.4rem;
+    width: 105px;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+.dk-input {
+    height: 36px;
+    display: flex;
+}
+
+.dk-btn:hover {
+    cursor: pointer;
+    filter: brightness(0.9);
+}

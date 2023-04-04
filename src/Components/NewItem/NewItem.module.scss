@@ -1,0 +1,34 @@
+.news {
+    margin-top: 117px;
+    cursor: pointer;
+    margin-bottom: 90px;
+
+    .news-img-transition {
+        overflow: hidden;
+
+        .news-img {
+            width: 100%;
+            height: 214px;
+            transition: all 0.3s ease;
+        }
+    }
+
+    .news-nd {
+        .news-heading {
+            font-size: 1.9rem;
+            margin: 15px 0;
+            line-height: 2.5rem;
+
+            &:hover {
+                color: #c89979;
+            }
+        }
+        .new-comment {
+            font-size: 1.4rem;
+        }
+    }
+}
+
+.news:hover .news-img {
+    transform: scale(1.25);
+}

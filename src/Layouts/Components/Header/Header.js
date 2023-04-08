@@ -44,22 +44,22 @@ function Header() {
                         </li>
                         <li className={cx('header-nav-list-item')}>
                             <FontAwesomeIcon icon={faPhone} className={cx('telephone-icon')} />
-                            <a href="tel:076 922 0162" className={cx('telephone')}>
+                            <Link to="tel:076 922 0162" className={cx('telephone')}>
                                 076 922 0162
-                            </a>
+                            </Link>
                         </li>
                     </ul>
 
                     <ul className={cx('header-nav-list')}>
                         <li className={cx('header-nav-list-item')}>
-                            <a href="/" className={cx('social')}>
+                            <Link to="/" className={cx('social')}>
                                 <FontAwesomeIcon icon={faFacebook} />
-                            </a>
+                            </Link>
                         </li>
                         <li className={cx('header-nav-list-item')}>
-                            <a href="/" className={cx('social')}>
+                            <Link to="/" className={cx('social')}>
                                 <FontAwesomeIcon icon={faInstagram} />
-                            </a>
+                            </Link>
                         </li>
                     </ul>
                 </nav>
@@ -81,40 +81,40 @@ function Header() {
                     </div>
                     <div className={cx('header_action')}>
                         <div className={cx('heart')}>
-                            <a href="/" className={cx('heart-item')}>
+                            <Link to="/" className={cx('heart-item')}>
                                 <FontAwesomeIcon icon={faHeart} className={cx('heart-icon')} />
-                            </a>
-                        </div>
-
-                        <div className={cx('cart')}>
-                            <Link to="/cart" className={cx('cart-item')}>
-                                <FontAwesomeIcon icon={faShoppingCart} className={cx('cart-icon')} />
                             </Link>
-                            <div className={cx('cart-info')}>
-                                <span className={cx('cart-title')}>Chưa có sản phẩm trong giỏ hàng </span>
-                            </div>
                         </div>
+                        <Link to="/cart" className={cx('cart-item')}>
+                            <div className={cx('cart')}>
+                                <FontAwesomeIcon icon={faShoppingCart} className={cx('cart-icon')} />
+
+                                <div className={cx('cart-info')}>
+                                    <span className={cx('cart-title')}>Chưa có sản phẩm trong giỏ hàng </span>
+                                </div>
+                            </div>
+                        </Link>
                     </div>
                 </div>
                 <nav className={cx('nav2')}>
                     <ul className={cx('nav2-list')}>
                         <li className={cx('nav2-list-item')}>
-                            <a href="/#">TRANG CHỦ</a>
+                            <Link to="/#">TRANG CHỦ</Link>
                         </li>
                         <li className={cx('nav2-list-item')}>
-                            <a href="/">GIỚI THIỆU</a>
+                            <Link to="/">GIỚI THIỆU</Link>
                         </li>
                         <li className={cx('nav2-list-item')}>
-                            <a href="/">ĐỒNG HỒ NAM</a>
+                            <Link to="/">ĐỒNG HỒ NAM</Link>
                         </li>
                         <li className={cx('nav2-list-item')}>
-                            <a href="/">ĐỒNG HỒ NỮ</a>
+                            <Link to="/">ĐỒNG HỒ NỮ</Link>
                         </li>
                         <li className={cx('nav2-list-item')}>
-                            <a href="/">BLOGS</a>
+                            <Link to="/">BLOGS</Link>
                         </li>
                         <li className={cx('nav2-list-item')}>
-                            <a href="/">LIÊN HỆ</a>
+                            <Link to="/">LIÊN HỆ</Link>
                         </li>
                     </ul>
                 </nav>

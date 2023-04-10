@@ -4,21 +4,21 @@ import { Link } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
-function ProductItem() {
+function ProductItem({ data }) {
+    let price = Intl.NumberFormat('vi-VN', {
+        style: 'currency',
+        currency: 'VND',
+    }).format(data.price);
     return (
         <div className={cx('ProductItem-wrapper')}>
             <Link className={cx('product-link')} to={`/productDetails`}>
                 <div className={cx('body')}>
-                    <img
-                        className={cx('body-img')}
-                        src="http://mauweb.monamedia.net/donghohaitrieu/wp-content/uploads/2019/07/product-05.png"
-                        alt=""
-                    />
+                    <img className={cx('body-img')} src={data.img} alt="" />
                     <div className={cx('nd')}>
-                        <span className={cx('sp-name')}>Classio 4</span>
+                        <span className={cx('sp-name')}>{data.name}</span>
                         <div className={cx('price')}>
-                            <span className={cx('price-old')}>700.000đ</span>
-                            <span className={cx('price-new')}>500.000đ</span>
+                            {/* <span className={cx('price-old')}>700.000đ</span> */}
+                            <span className={cx('price-new')}>{price}</span>
                         </div>
                     </div>
                     <button className={cx('body-btn')}>

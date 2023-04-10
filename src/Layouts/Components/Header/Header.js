@@ -5,6 +5,7 @@ import { faHeart, faLocationDot, faPhone, faSearch, faShoppingCart } from '@fort
 import { faFacebook, faInstagram } from '@fortawesome/free-brands-svg-icons';
 import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
+import Search from '../Search/Search';
 
 const cx = classNames.bind(styles);
 
@@ -73,12 +74,11 @@ function Header() {
                             />
                         </Link>
                     </div>
-                    <div className={cx('header-search')}>
-                        <input type="text" className={cx('search')} placeholder="Tìm kiếm..." />
-                        <button className={cx('header_search-btn')}>
-                            <FontAwesomeIcon icon={faSearch} className={cx('header_search-btn-icon')} />
-                        </button>
-                    </div>
+
+                    {/* search */}
+
+                    <Search />
+
                     <div className={cx('header_action')}>
                         <div className={cx('heart')}>
                             <Link to="/" className={cx('heart-item')}>

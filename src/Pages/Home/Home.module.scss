@@ -15,8 +15,8 @@
 
     .best-seller-product {
         display: grid;
-        grid-template-columns: auto auto auto auto;
-        column-gap: 50px;
+        grid-template-columns: repeat(4, 1fr);
+        grid-gap: 20px;
     }
 }
 
@@ -39,8 +39,8 @@
 
     .products {
         display: grid;
-        grid-template-columns: auto auto auto auto auto;
-        column-gap: 15px;
+        grid-template-columns: repeat(5, 1fr);
+        grid-gap: 20px;
     }
 }
 

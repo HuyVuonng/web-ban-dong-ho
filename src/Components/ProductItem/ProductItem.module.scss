@@ -7,7 +7,7 @@
     transition: transform linear 0.1s;
     will-change: transform;
     .body-img {
-        object-fit: contain;
+        object-fit: scale-down;
         width: 100%;
         height: 330px;
         border-bottom: 1px solid #c89979;
@@ -23,6 +23,14 @@
             font-size: 1.8rem;
             font-weight: 600;
             margin: 20px 0;
+            max-width: 223px;
+
+            //de ten chi nam trong 1 dong
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .price {

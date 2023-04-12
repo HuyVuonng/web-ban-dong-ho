@@ -5,8 +5,8 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { useEffect, useState } from 'react';
 import HeadlessTippy from '@tippyjs/react/headless';
 import { useDebounce } from '~/hooks';
-import axios from 'axios';
-
+import httpRequest from '~/utils/httprequest';
+import { Link } from 'react-router-dom';
 const cx = classNames.bind(styles);
 
 function Search() {
@@ -22,7 +22,7 @@ function Search() {
         }
         // encodeURIComponent(searchValue) de tranh ky tu dac biet
         const fetchAPI = async () => {
-            const result = await axios.get('http://localhost:3000/products/search', {
+            const result = await httpRequest.get('products/search', {
                 params: {
                     q: debounceValue,
                 },
@@ -58,13 +58,15 @@ function Search() {
                             currency: 'VND',
                         }).format(product.price);
                         return (
-                            <div className={cx('search-item')}>
-                                <img src={product.img} alt="" />
-                                <div className={cx('prod-info')}>
-                                    <span className={cx('name')}>{product.name}</span>
-                                    <span className={cx('price')}>{price}</span>
+                            <Link to={`/productDetails/${product._id}`} className={cx('SearchproductDetails_link')}>
+                                <div className={cx('search-item')}>
+                                    <img src={product.img} alt="" />
+                                    <div className={cx('prod-info')}>
+                                        <span className={cx('name')}>{product.name}</span>
+                                        <span className={cx('price')}>{price}</span>
+                                    </div>
                                 </div>
-                            </div>
+                            </Link>
                         );
                     })}
                 </div>

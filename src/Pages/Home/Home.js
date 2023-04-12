@@ -2,7 +2,7 @@ import classNames from 'classnames/bind';
 import styles from './Home.module.scss';
 import ProductItem from '~/Components/ProductItem/ProductItem';
 import NewItem from '~/Components/NewItem/NewItem';
-import axios from 'axios';
+import httpRequest from '~/utils/httprequest';
 import { useEffect, useState, useRef } from 'react';
 
 const cx = classNames.bind(styles);
@@ -13,8 +13,8 @@ function Home() {
     const [newProduct, setNewProduct] = useState({});
 
     const fetchdata = async () => {
-        const res = await axios.get('http://localhost:3000/products/bestseller');
-        const newproducts = await axios.get('http://localhost:3000/products/newproducts');
+        const res = await httpRequest.get('products/bestseller');
+        const newproducts = await httpRequest.get('products/newproducts');
         setNewProduct(newproducts.data);
         setBestseller(res.data);
         setloading(false);
@@ -26,6 +26,14 @@ function Home() {
             console.log('run');
         }
     }, []);
+
+    const changeLableproc = (e) => {
+        const lable = document.querySelectorAll(`.${cx('lable')}`);
+        for (let i = 0; i < lable.length; i++) {
+            lable[i].classList.remove(`${cx('active')}`);
+        }
+        e.target.classList.add(`${cx('active')}`);
+    };
 
     if (loadding) {
         return <div>Loading...</div>;
@@ -44,8 +52,12 @@ function Home() {
 
                     <div className={cx('product2')}>
                         <div className={cx('lable-products')}>
-                            {/* <h2 className={cx('lable', )}>Sản phẩm khuyến mại</h2> */}
-                            <h2 className={cx('lable', 'active')}>Sản phẩm mới</h2>
+                            <h2 className={cx('lable', 'active')} onClick={changeLableproc}>
+                                Sản phẩm mới
+                            </h2>
+                            <h2 className={cx('lable')} onClick={changeLableproc}>
+                                Sản phẩm khuyến mại
+                            </h2>
                         </div>
                         <div className={cx('products')}>
                             {newProduct.map((product, index) => (

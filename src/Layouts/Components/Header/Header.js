@@ -1,7 +1,7 @@
 import classNames from 'classnames/bind';
 import styles from './Header.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart, faLocationDot, faPhone, faSearch, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
+import { faHeart, faLocationDot, faPhone, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import { faFacebook, faInstagram } from '@fortawesome/free-brands-svg-icons';
 import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';

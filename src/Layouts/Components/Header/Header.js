@@ -14,7 +14,6 @@ function Header() {
     useEffect(() => {
         if (mount.current) {
             const nav = document.querySelector(`.${cx('nav2')}`);
-            console.log(nav);
             window.addEventListener('scroll', () => {
                 var y = document.documentElement.scrollTop;
                 if (y > 174) {

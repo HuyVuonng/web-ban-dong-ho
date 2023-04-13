@@ -12,11 +12,10 @@ function ProductDetail() {
     const input = useRef();
     const txtErr = useRef();
     let productID = useParams();
-
     const [quantity, setQuantity] = useState(1);
     const [product, setProduct] = useState([]);
     const [loadding, setLoadding] = useState(true);
-    let load = useRef(true);
+    // let load = useRef(true);
 
     const getProductDetail = async () => {
         await httpRequest
@@ -29,12 +28,9 @@ function ProductDetail() {
         setLoadding(false);
     };
     useEffect(() => {
-        if (load.current) {
-            getProductDetail();
-            load.current = false;
-        }
+        getProductDetail();
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [productID]);
 
     const changePrice = (price) => {
         const priceChange = Intl.NumberFormat('vi-VN', {
@@ -102,8 +98,8 @@ function ProductDetail() {
                     <div className={cx('product-info')}>
                         <h1 className={cx('product-name')}>{product.name}</h1>
                         <h3 className={cx('product-price')}>{changePrice(product.price)}</h3>
-                        <span className={cx('product-owner-title')}>Nhà sản xuất:</span>
-                        <span className={cx('product-owner')}>{product.NSX}</span>
+                        <span className={cx('product-owner-title')}>Thương hiệu:</span>
+                        <span className={cx('product-owner')}>{product.ThuongHieu}</span>
 
                         <p className={cx('product-description-title')}>Mô tả:</p>
                         <p className={cx('product-description')}>{product.Decription}</p>

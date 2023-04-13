@@ -43,51 +43,63 @@ function Search() {
     const handleHideResults = () => {
         setShowResults(false);
     };
+    const emtySearchValue = () => {
+        setSearchValue('');
+        setShowResults(false);
+    };
     return (
-        <HeadlessTippy
-            interactive
-            offset={[-15, 6]}
-            visible={showResults && searchResult.length > 0}
-            render={(attrs) => (
-                <div className={cx('search-result')} tabIndex="-1" {...attrs}>
-                    <h4 className={cx('search-title')}>Search</h4>
+        // tag around the reference element solves this by creating a new parentNode context. Specifying `appendTo: document
+        <div>
+            <HeadlessTippy
+                interactive
+                offset={[-15, 6]}
+                visible={showResults && searchResult.length > 0}
+                render={(attrs) => (
+                    <div className={cx('search-result')} tabIndex="-1" {...attrs}>
+                        <h4 className={cx('search-title')}>Search</h4>
 
-                    {searchResult.map((product) => {
-                        let price = Intl.NumberFormat('vi-VN', {
-                            style: 'currency',
-                            currency: 'VND',
-                        }).format(product.price);
-                        return (
-                            <Link to={`/productDetails/${product._id}`} className={cx('SearchproductDetails_link')}>
-                                <div className={cx('search-item')}>
-                                    <img src={product.img} alt="" />
-                                    <div className={cx('prod-info')}>
-                                        <span className={cx('name')}>{product.name}</span>
-                                        <span className={cx('price')}>{price}</span>
+                        {searchResult.map((product) => {
+                            let price = Intl.NumberFormat('vi-VN', {
+                                style: 'currency',
+                                currency: 'VND',
+                            }).format(product.price);
+                            return (
+                                <Link
+                                    to={`/productDetails/${product._id}`}
+                                    key={product._id}
+                                    onClick={emtySearchValue}
+                                    className={cx('SearchproductDetails_link')}
+                                >
+                                    <div className={cx('search-item')}>
+                                        <img src={product.img} alt="" />
+                                        <div className={cx('prod-info')}>
+                                            <span className={cx('name')}>{product.name}</span>
+                                            <span className={cx('price')}>{price}</span>
+                                        </div>
                                     </div>
-                                </div>
-                            </Link>
-                        );
-                    })}
-                </div>
-            )}
-            onClickOutside={handleHideResults}
-        >
-            <div className={cx('header-search')}>
-                <input
-                    type="text"
-                    className={cx('search')}
-                    placeholder="Tìm kiếm..."
-                    value={searchValue}
-                    onFocus={() => setShowResults(true)}
-                    onChange={handleChange}
-                />
+                                </Link>
+                            );
+                        })}
+                    </div>
+                )}
+                onClickOutside={handleHideResults}
+            >
+                <div className={cx('header-search')}>
+                    <input
+                        type="text"
+                        className={cx('search')}
+                        placeholder="Tìm kiếm..."
+                        value={searchValue}
+                        onFocus={() => setShowResults(true)}
+                        onChange={handleChange}
+                    />
 
-                <button className={cx('header_search-btn')}>
-                    <FontAwesomeIcon icon={faSearch} className={cx('header_search-btn-icon')} />
-                </button>
-            </div>
-        </HeadlessTippy>
+                    <button className={cx('header_search-btn')}>
+                        <FontAwesomeIcon icon={faSearch} className={cx('header_search-btn-icon')} />
+                    </button>
+                </div>
+            </HeadlessTippy>
+        </div>
     );
 }
 

@@ -23,7 +23,6 @@ function Home() {
         if (load.current) {
             fetchdata();
             load.current = false;
-            console.log('run');
         }
     }, []);
 

@@ -36,13 +36,15 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     .SearchproductDetails_link {
         text-decoration: none;
-
+        display: block;
+        padding: 5px 0;
         .search-item {
             display: flex;
 
             img {
                 width: 80px;
                 height: 80px;
+                object-fit: scale-down;
                 border-radius: 100rem;
             }
             .prod-info {
@@ -62,6 +64,14 @@
                     color: red;
                 }
             }
+        }
+
+        + .SearchproductDetails_link {
+            border-top: 1px solid #ccc6c6;
+        }
+
+        &:hover {
+            opacity: 0.8;
         }
     }
 }

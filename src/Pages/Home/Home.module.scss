@@ -15,6 +15,7 @@
 
     .best-seller-product {
         display: grid;
+        //chia lamf 4 cot va khong bi thay doi kich thuoc khi tang gap
         grid-template-columns: repeat(4, 1fr);
         grid-gap: 20px;
     }
@@ -39,6 +40,7 @@
 
     .products {
         display: grid;
+        //chia lamf 5 cot va khong bi thay doi kich thuoc khi tang gap
         grid-template-columns: repeat(5, 1fr);
         grid-gap: 20px;
     }
@@ -46,7 +48,7 @@
 
 .news {
     display: grid;
-    grid-template-columns: auto auto auto;
+    grid-template-columns: repeat(3, 1fr);
     column-gap: 10px;
     position: relative;
 }

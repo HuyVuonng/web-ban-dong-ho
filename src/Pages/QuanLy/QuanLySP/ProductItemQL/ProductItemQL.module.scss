@@ -1,0 +1,88 @@
+.body {
+    border: 1px solid #c89979;
+    text-align: center;
+    /* margin-top: 10px; */
+    margin: 20px 0;
+    cursor: pointer;
+    transition: transform linear 0.1s;
+    will-change: transform;
+    .body-img {
+        object-fit: scale-down;
+        width: 100%;
+        height: 330px;
+        border-bottom: 1px solid #c89979;
+        /* border-top: 1px solid #c89979; */
+    }
+
+    .nd {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .sp-name {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin: 20px 0;
+            max-width: 223px;
+
+            //de ten chi nam trong 1 dong
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .price {
+            margin-bottom: 20px;
+            font-size: 1.4rem;
+
+            .price-old {
+                color: #c89979;
+                opacity: 0.5;
+                text-decoration: line-through;
+            }
+            .price-new {
+                color: #c89979;
+            }
+        }
+    }
+
+    .body-btn {
+        border: none;
+        padding: 8px 12px;
+        margin: 12px;
+
+        .btn-name {
+            text-transform: uppercase;
+            color: black;
+            font-size: 1.4rem;
+            font-weight: 500;
+        }
+
+        &:hover {
+            filter: brightness(0.9);
+            cursor: pointer;
+        }
+
+        &.Sua {
+            background-color: yellow;
+            display: inline-block;
+            text-decoration: none;
+        }
+
+        &.Xoa {
+            background-color: red;
+        }
+    }
+
+    &:hover {
+        box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 20px 0px;
+        transform: translateY(-1px);
+    }
+}
+
+.product-link {
+    color: black;
+    text-decoration: none;
+}

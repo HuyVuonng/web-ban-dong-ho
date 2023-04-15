@@ -1,0 +1,26 @@
+.wrapper-homepage {
+    width: 1200px;
+    margin: auto;
+}
+.lable {
+    font-size: 25.6px;
+    display: inline-block;
+}
+
+.lable + .lable {
+    margin-left: 15px;
+}
+.lable-products {
+    .lable {
+        &:hover {
+            color: #c89979;
+            cursor: pointer;
+        }
+
+        &.active {
+            color: #c89979;
+            font-size: 3rem;
+            user-select: none;
+        }
+    }
+}

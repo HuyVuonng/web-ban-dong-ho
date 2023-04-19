@@ -11,6 +11,7 @@ function Cart() {
     const [tongtien, setTongtien] = useState(0);
     const prodInlocalStrorage = localStorage.getItem('idItems') ? JSON.parse(localStorage.getItem('idItems')) : [];
     const [prodInlocal, setProdInlocal] = useState(prodInlocalStrorage);
+    let idprodDelete = useRef();
     const getData = async (id, sl) => {
         setProduct([]);
         await httpRequest.get('/products', { params: { id: id } }).then((response) => {
@@ -54,6 +55,7 @@ function Cart() {
             currency: 'VND',
         }).format(price);
     };
+
     const removeItem = (id) => {
         let itemStrore = JSON.parse(localStorage.getItem('idItems'));
         itemStrore.forEach((element, index) => {
@@ -64,6 +66,7 @@ function Cart() {
             }
         });
     };
+
     return (
         <div className={cx('cart-wrapper')}>
             <h3 className={cx('cart-title')}>Giỏ hàng</h3>
@@ -94,7 +97,12 @@ function Cart() {
                                         <td className={cx('Item-total-price')}>
                                             {priceConver(product.price * product.slmua)}
                                         </td>
-                                        <td className={cx('Item-remove')} onClick={() => removeItem(product._id)}>
+                                        <td
+                                            className={cx('Item-remove')}
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#DeleteModal"
+                                            onClick={() => (idprodDelete.current = product._id)}
+                                        >
                                             x
                                         </td>
                                     </tr>
@@ -107,6 +115,46 @@ function Cart() {
                     <h2>Tổng tiền</h2>
                     <h3>{tongtien}</h3>
                     <button>TIẾN HÀNH THANH TOÁN</button>
+                </div>
+            </div>
+
+            {/* Confirm delete modal */}
+
+            <div
+                className="modal fade"
+                id="DeleteModal"
+                tabIndex="-1"
+                aria-labelledby="exampleModalLabel"
+                aria-hidden="true"
+            >
+                <div className="modal-dialog">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h1 className="modal-title fs-5" id="exampleModalLabel">
+                                Bạn muốn xóa?
+                            </h1>
+                            <button
+                                type="button"
+                                className="btn-close"
+                                data-bs-dismiss="modal"
+                                aria-label="Close"
+                            ></button>
+                        </div>
+                        <div className="modal-body">Bạn muốn xóa sản phẩm này khỏi giỏ hàng? </div>
+                        <div className="modal-footer">
+                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">
+                                Close
+                            </button>
+                            <button
+                                type="button"
+                                className="btn btn-danger"
+                                data-bs-dismiss="modal"
+                                onClick={() => removeItem(idprodDelete.current)}
+                            >
+                                Xóa
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

@@ -32,7 +32,7 @@ function ProductCreateUpdate() {
                 }
             >
                 <div className="mb-3 mt-4">
-                    <label for="name" className="form-label">
+                    <label htmlFor="name" className="form-label">
                         Tên đồng hồ
                     </label>
                     <input
@@ -45,7 +45,7 @@ function ProductCreateUpdate() {
                 </div>
 
                 <div className="mb-3 mt-4">
-                    <label for="price" className="form-label">
+                    <label htmlFor="price" className="form-label">
                         Giá bán
                     </label>
                     <input
@@ -58,7 +58,7 @@ function ProductCreateUpdate() {
                 </div>
 
                 <div className="mb-3 mt-4">
-                    <label for="ThuongHieu" className="form-label">
+                    <label htmlFor="ThuongHieu" className="form-label">
                         Thương hiệu
                     </label>
                     <input
@@ -71,7 +71,7 @@ function ProductCreateUpdate() {
                 </div>
 
                 <div className="mb-3 mt-4">
-                    <label for="decription" className="form-label">
+                    <label htmlFor="decription" className="form-label">
                         Mô tả
                     </label>
                     <textarea
@@ -83,7 +83,7 @@ function ProductCreateUpdate() {
                 </div>
 
                 <div className="mb-3 mt-4">
-                    <label for="SoLuong" className="form-label">
+                    <label htmlFor="SoLuong" className="form-label">
                         Số lượng
                     </label>
                     <input
@@ -96,7 +96,7 @@ function ProductCreateUpdate() {
                 </div>
 
                 <div className="mb-3 mt-4">
-                    <label for="img" className="form-label">
+                    <label htmlFor="img" className="form-label">
                         Link ảnh
                     </label>
                     <input type="text" className="form-control" id="img" name="img" defaultValue={product.img || ''} />

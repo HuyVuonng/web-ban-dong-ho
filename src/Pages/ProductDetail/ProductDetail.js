@@ -125,7 +125,7 @@ function ProductDetail() {
             });
         }
         localStorage.setItem('idItems', JSON.stringify(id_items));
-        toast(<Link to="/cart">Đã thêm vào giỏ hàng</Link>, { theme: 'dark', autoClose: 1000 });
+        toast.success(<Link to="/cart">Đã thêm vào giỏ hàng</Link>, { theme: 'dark', autoClose: 1000 });
     };
 
     return (

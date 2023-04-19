@@ -17,11 +17,9 @@ function ProductCreateUpdate() {
 
             setTitle('Sửa sản phẩm');
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
-    const changeINput = (e) => {
-        e.defaultValue = e.target.defaultValue;
-        console.log(e.target.defaultValue);
-    };
+
     return (
         <>
             <h1>{title}</h1>

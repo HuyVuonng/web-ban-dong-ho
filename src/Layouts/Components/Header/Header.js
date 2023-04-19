@@ -88,9 +88,9 @@ function Header() {
                             <div className={cx('cart')}>
                                 <FontAwesomeIcon icon={faShoppingCart} className={cx('cart-icon')} />
 
-                                <div className={cx('cart-info')}>
+                                {/* <div className={cx('cart-info')}>
                                     <span className={cx('cart-title')}>Chưa có sản phẩm trong giỏ hàng </span>
-                                </div>
+                                </div> */}
                             </div>
                         </Link>
                     </div>

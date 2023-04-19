@@ -1,14 +1,16 @@
 import classNames from 'classnames/bind';
 import styles from './QuanLy.module.scss';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import ProductCreateUpdate from '../ProductCreateUpdate';
 import QuanLySP from './QuanLySP';
 import QuanLyTK from './QuanLyTK';
 
 const cx = classNames.bind(styles);
 function QuanLy() {
-    const [loadding, setloading] = useState(false);
     const [Page, setPage] = useState(<QuanLySP />);
+    useEffect(() => {
+        document.title = 'Quản lý';
+    }, []);
     // let page = <ProductCreate />;
 
     // const fetchdata = async () => {
@@ -47,26 +49,22 @@ function QuanLy() {
         }
     };
 
-    if (loadding) {
-        return <div>Loading...</div>;
-    } else {
-        return (
-            <div className={cx('wrapper-homepage')}>
-                <div className={cx('lable-products')}>
-                    <h2 className={cx('lable', 'active')} onClick={changeLableproc}>
-                        Quản Lý Sản Phẩm
-                    </h2>
-                    <h2 className={cx('lable')} onClick={changeLableproc}>
-                        Quản Lý Tài Khoản
-                    </h2>
-                    <h2 className={cx('lable')} onClick={changeLableproc}>
-                        Thêm sản phẩm
-                    </h2>
-                </div>
-                {Page}
+    return (
+        <div className={cx('wrapper-homepage')}>
+            <div className={cx('lable-products')}>
+                <h2 className={cx('lable', 'active')} onClick={changeLableproc}>
+                    Quản Lý Sản Phẩm
+                </h2>
+                <h2 className={cx('lable')} onClick={changeLableproc}>
+                    Quản Lý Tài Khoản
+                </h2>
+                <h2 className={cx('lable')} onClick={changeLableproc}>
+                    Thêm sản phẩm
+                </h2>
             </div>
-        );
-    }
+            {Page}
+        </div>
+    );
 }
 
 export default QuanLy;

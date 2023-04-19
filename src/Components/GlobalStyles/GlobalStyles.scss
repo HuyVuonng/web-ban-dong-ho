@@ -24,6 +24,15 @@ html {
     overflow-y: overlay;
 }
 
+.Toastify__toast-body > div:last-child {
+    a {
+        font-size: 1.4rem;
+        text-decoration: none;
+        color: white;
+        display: block;
+    }
+}
+
 //Scrool bar css
 html ::-webkit-scrollbar {
     border-radius: 0px;

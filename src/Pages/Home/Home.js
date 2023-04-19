@@ -23,6 +23,7 @@ function Home() {
         if (load.current) {
             fetchdata();
             load.current = false;
+            document.title = 'Trang chủ';
         }
     }, []);
 

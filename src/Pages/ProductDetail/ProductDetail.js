@@ -1,9 +1,11 @@
 import classNames from 'classnames/bind';
 import styles from './ProductDetail.module.scss';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { useRef, useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import httpRequest from '~/utils/httprequest';
 
 const cx = classNames.bind(styles);
@@ -24,7 +26,11 @@ function ProductDetail() {
                     id: productID.ID,
                 },
             })
-            .then((response) => setProduct(response.data));
+            .then((response) => {
+                document.title = response.data.name;
+                setProduct(response.data);
+            });
+
         setLoadding(false);
     };
     useEffect(() => {
@@ -85,6 +91,43 @@ function ProductDetail() {
 
         setQuantity(input.current.value);
     };
+
+    const AddtoCart = () => {
+        // cookie.current = product._id;
+        // var newcookie = [];
+
+        // if (newcookie.length < 0) {
+        //     newcookie.push(cookie.current);
+        // } else {
+        //     newcookie = [...newcookie, cookie.current];
+        // }
+        // document.cookie = `idProds=${newcookie}`;
+        // console.log(newcookie);
+        let tontai = false;
+        let location;
+        let id_items = localStorage.getItem('idItems') ? JSON.parse(localStorage.getItem('idItems')) : [];
+        id_items.forEach((item, index) => {
+            if (item.id_prod === product._id) {
+                location = index;
+                tontai = true;
+            }
+        });
+        if (tontai) {
+            if (id_items[location].sl + quantity > +product.SoLuong) {
+                txtErr.current.textContent = 'Vuợt sản phẩm trong giỏ hàng vượt quá số lượng hàng hiện có';
+                return false;
+            }
+            id_items[location].sl += quantity;
+        } else {
+            id_items.push({
+                id_prod: product._id,
+                sl: quantity,
+            });
+        }
+        localStorage.setItem('idItems', JSON.stringify(id_items));
+        toast(<Link to="/cart">Đã thêm vào giỏ hàng</Link>, { theme: 'dark', autoClose: 1000 });
+    };
+
     return (
         <div className={cx('wrapper-prosuct-detail')}>
             {loadding ? (
@@ -118,7 +161,10 @@ function ProductDetail() {
                                 <FontAwesomeIcon icon={faPlus} className={cx('product-icon-plus')} onClick={plus} />
                             </div>
                             <p ref={txtErr} className={cx('product-quantity-err')}></p>
-                            <button className={cx('product-action-buy')}>Thêm vào giỏ hàng</button>
+                            <button className={cx('product-action-buy')} onClick={AddtoCart}>
+                                Thêm vào giỏ hàng
+                            </button>
+                            <ToastContainer theme="dark" autoClose={1000} />
                         </div>
                     </div>
                 </div>

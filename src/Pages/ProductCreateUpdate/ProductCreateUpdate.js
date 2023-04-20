@@ -7,6 +7,7 @@ function ProductCreateUpdate() {
     const [product, setProduct] = useState({});
     useEffect(() => {
         if (productID.id) {
+            window.scrollTo(0, 0);
             httpRequest
                 .get('/products', {
                     params: {
@@ -23,6 +24,17 @@ function ProductCreateUpdate() {
     return (
         <>
             <h1>{title}</h1>
+            {(() => {
+                if (product.GioiTinh) {
+                    const select = document.querySelector('#GioiTinh');
+
+                    for (let i = 0; i < select.options.length; i++) {
+                        if (select.options[i].value === product.GioiTinh) {
+                            select.options[i].setAttribute('selected', 'selected');
+                        }
+                    }
+                }
+            })()}
             <form
                 method="post"
                 action={
@@ -48,13 +60,7 @@ function ProductCreateUpdate() {
                     <label htmlFor="GioiTinh" className="form-label">
                         Giới tính
                     </label>
-
-                    <select
-                        name="GioiTinh"
-                        className="form-control"
-                        id="GioiTinh"
-                        defaultValue={product.GioiTinh || ''}
-                    >
+                    <select name="GioiTinh" className="form-control" id="GioiTinh">
                         <option value="nam">Nam</option>
                         <option value="nu">Nữ</option>
                     </select>

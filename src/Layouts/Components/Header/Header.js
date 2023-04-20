@@ -104,10 +104,10 @@ function Header() {
                             <Link to="/">GIỚI THIỆU</Link>
                         </li>
                         <li className={cx('nav2-list-item')}>
-                            <Link to="/">ĐỒNG HỒ NAM</Link>
+                            <Link to="/donghonam">ĐỒNG HỒ NAM</Link>
                         </li>
                         <li className={cx('nav2-list-item')}>
-                            <Link to="/">ĐỒNG HỒ NỮ</Link>
+                            <Link to="/donghonu">ĐỒNG HỒ NỮ</Link>
                         </li>
                         <li className={cx('nav2-list-item')}>
                             <Link to="/">BLOGS</Link>

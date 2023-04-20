@@ -45,6 +45,22 @@ function ProductCreateUpdate() {
                 </div>
 
                 <div className="mb-3 mt-4">
+                    <label htmlFor="GioiTinh" className="form-label">
+                        Giới tính
+                    </label>
+
+                    <select
+                        name="GioiTinh"
+                        className="form-control"
+                        id="GioiTinh"
+                        defaultValue={product.GioiTinh || ''}
+                    >
+                        <option value="nam">Nam</option>
+                        <option value="nu">Nữ</option>
+                    </select>
+                </div>
+
+                <div className="mb-3 mt-4">
                     <label htmlFor="price" className="form-label">
                         Giá bán
                     </label>

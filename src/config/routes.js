@@ -1,5 +1,6 @@
 const routes = {
     home: '/',
+    phanloai: '/:gt',
     cart: '/cart',
     quanLy: '/quanly',
     productDetails: '/productDetails/:ID',

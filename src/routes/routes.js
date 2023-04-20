@@ -5,8 +5,10 @@ import Home from '~/Pages/Home';
 import ProductDetail from '~/Pages/ProductDetail';
 import QuanLy from '~/Pages/QuanLy';
 import ProductCreateUpdate from '~/Pages/ProductCreateUpdate';
+import PhanLoai from '~/Pages/PhanLoai';
 const publicRoutes = [
     { path: config.routes.home, component: Home },
+    { path: config.routes.phanloai, component: PhanLoai },
     { path: config.routes.cart, component: Cart },
     { path: config.routes.quanLy, component: QuanLy },
     { path: config.routes.productDetails, component: ProductDetail },

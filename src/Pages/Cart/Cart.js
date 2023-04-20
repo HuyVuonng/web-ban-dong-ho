@@ -101,7 +101,8 @@ function Cart() {
                                             className={cx('Item-remove')}
                                             data-bs-toggle="modal"
                                             data-bs-target="#DeleteModal"
-                                            onClick={() => (idprodDelete.current = product._id)}
+                                            data-id={product._id}
+                                            onClick={(e) => (idprodDelete.current = e.target.dataset.id)}
                                         >
                                             x
                                         </td>

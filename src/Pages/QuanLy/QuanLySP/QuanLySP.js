@@ -5,6 +5,7 @@ import httpRequest from '~/utils/httprequest';
 import ProductItemQL from './ProductItemQL/ProductItemQL';
 import ReactPaginate from 'react-paginate';
 import { Link } from 'react-router-dom';
+import Loadding from '~/Components/Loadding';
 
 const cx = classNames.bind(styles);
 
@@ -50,7 +51,7 @@ function QuanLySP() {
     };
 
     if (loading) {
-        return <div>Loadding...</div>;
+        return <Loadding />;
     } else {
         return (
             <>

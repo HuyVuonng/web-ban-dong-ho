@@ -4,6 +4,7 @@ import httpRequest from '~/utils/httprequest';
 function ProductCreateUpdate() {
     let productID = useParams();
     const [title, setTitle] = useState('Thêm sản phẩm');
+    const [prevIMG, setPrevIMG] = useState();
     const [product, setProduct] = useState({});
     useEffect(() => {
         if (productID.id) {
@@ -20,6 +21,20 @@ function ProductCreateUpdate() {
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
+
+    useEffect(() => {
+        return () => {
+            prevIMG && URL.revokeObjectURL(prevIMG.preview);
+        };
+    }, [prevIMG]);
+
+    const handlePrevIMG = (e) => {
+        if (e.target.files[0]) {
+            const file = e.target.files[0];
+            file.preview = URL.createObjectURL(file);
+            setPrevIMG(file);
+        }
+    };
 
     const xoaKhoangTrang = () => {
         const inputs = document.querySelectorAll('input');
@@ -50,6 +65,7 @@ function ProductCreateUpdate() {
                         ? 'http://localhost:3000/products/create'
                         : `http://localhost:3000/products/${productID.id}/edit?_method=PUT`
                 }
+                encType="multipart/form-data"
             >
                 <div className="mb-3 mt-4">
                     <label htmlFor="name" className="form-label">
@@ -146,13 +162,17 @@ function ProductCreateUpdate() {
                         Link ảnh
                     </label>
                     <input
-                        type="text"
+                        type="file"
                         className="form-control"
                         required
                         id="img"
                         name="img"
+                        onChange={handlePrevIMG}
                         defaultValue={product.img || ''}
                     />
+                    {product.img && !prevIMG && <img src={product.img} alt="" width="20%" />}
+
+                    {prevIMG && <img src={prevIMG.preview} alt="" width="20%" />}
                 </div>
 
                 <button type="submit" className="mb-5 btn btn-primary" onClick={xoaKhoangTrang}>

@@ -4,6 +4,7 @@ import ProductItem from '~/Components/ProductItem/ProductItem';
 import NewItem from '~/Components/NewItem/NewItem';
 import httpRequest from '~/utils/httprequest';
 import { useEffect, useState, useRef } from 'react';
+import Loadding from '~/Components/Loadding';
 
 const cx = classNames.bind(styles);
 function Home() {
@@ -36,7 +37,7 @@ function Home() {
     };
 
     if (loadding) {
-        return <div>Loading...</div>;
+        return <Loadding />;
     } else {
         return (
             <div className={cx('wrapper-homepage')}>

@@ -12,6 +12,7 @@ function Cart() {
     const prodInlocalStrorage = localStorage.getItem('idItems') ? JSON.parse(localStorage.getItem('idItems')) : [];
     const [prodInlocal, setProdInlocal] = useState(prodInlocalStrorage);
     let idprodDelete = useRef();
+
     const getData = async (id, sl) => {
         setProduct([]);
         await httpRequest.get('/products', { params: { id: id } }).then((response) => {
@@ -85,30 +86,42 @@ function Cart() {
                         </thead>
 
                         <tbody>
-                            {products.map((product, index) => {
-                                return (
-                                    <tr key={index} className={cx('Item')}>
-                                        <td className={cx('Item-img')}>
-                                            <img src={product.img} alt="" />
-                                        </td>
-                                        <td className={cx('Item-name')}>{product.name}</td>
-                                        <td className={cx('Item-price')}>{priceConver(product.price)}</td>
-                                        <td className={cx('Item-buy')}>{product.slmua}</td>
-                                        <td className={cx('Item-total-price')}>
-                                            {priceConver(product.price * product.slmua)}
-                                        </td>
-                                        <td
-                                            className={cx('Item-remove')}
-                                            data-bs-toggle="modal"
-                                            data-bs-target="#DeleteModal"
-                                            data-id={product._id}
-                                            onClick={(e) => (idprodDelete.current = e.target.dataset.id)}
-                                        >
-                                            x
-                                        </td>
-                                    </tr>
-                                );
-                            })}
+                            {products.length > 0 ? (
+                                products.map((product, index) => {
+                                    return (
+                                        <tr key={index} className={cx('Item')}>
+                                            <td className={cx('Item-img')}>
+                                                <img src={product.img} alt="" />
+                                            </td>
+                                            <td className={cx('Item-name')}>{product.name}</td>
+                                            <td className={cx('Item-price')}>{priceConver(product.price)}</td>
+                                            <td className={cx('Item-buy')}>{product.slmua}</td>
+                                            <td className={cx('Item-total-price')}>
+                                                {priceConver(product.price * product.slmua)}
+                                            </td>
+                                            <td
+                                                className={cx('Item-remove')}
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#DeleteModal"
+                                                data-id={product._id}
+                                                onClick={(e) => (idprodDelete.current = e.target.dataset.id)}
+                                            >
+                                                x
+                                            </td>
+                                        </tr>
+                                    );
+                                })
+                            ) : (
+                                <tr>
+                                    <td colSpan={6} className="text-center">
+                                        <img
+                                            src="https://i.pinimg.com/736x/2e/ac/fa/2eacfa305d7715bdcd86bb4956209038--android.jpg"
+                                            alt="cart-emty-img"
+                                        />
+                                        ;
+                                    </td>
+                                </tr>
+                            )}
                         </tbody>
                     </table>
                 </div>

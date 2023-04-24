@@ -66,10 +66,8 @@ function ProductItem({ data }) {
                         </div>
                     </div>
                 </Link>
-                <button className={cx('body-btn')}>
-                    <span className={cx('btn-name')} data-id={data._id} onClick={AddtoCart}>
-                        Thêm vào giỏ hàng
-                    </span>
+                <button className={cx('body-btn')} data-id={data._id} onClick={(e) => AddtoCart(e)}>
+                    <span className={cx('btn-name')}>Thêm vào giỏ hàng</span>
                 </button>
             </div>
         </div>

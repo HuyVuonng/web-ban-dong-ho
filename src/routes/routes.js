@@ -6,6 +6,8 @@ import ProductDetail from '~/Pages/ProductDetail';
 import QuanLy from '~/Pages/QuanLy';
 import ProductCreateUpdate from '~/Pages/ProductCreateUpdate';
 import PhanLoai from '~/Pages/PhanLoai';
+import ThungRac from '~/Pages/QuanLy/ThungRac';
+
 const publicRoutes = [
     { path: config.routes.home, component: Home },
     { path: config.routes.phanloai, component: PhanLoai },
@@ -13,6 +15,7 @@ const publicRoutes = [
     { path: config.routes.quanLy, component: QuanLy },
     { path: config.routes.productDetails, component: ProductDetail },
     { path: config.routes.productEdit, component: ProductCreateUpdate },
+    { path: config.routes.thungrac, component: ThungRac },
 ];
 
 const privateRoutes = [];

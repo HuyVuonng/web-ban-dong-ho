@@ -14,8 +14,9 @@ function PhanLoai() {
     const [ProductInPagee, setProductInPagee] = useState([]);
     const [searchParams, setSearchParams] = useSearchParams({});
     const gt = params.gt === 'donghonam' ? 'nam' : 'nu';
-    const soLuongItemTrenTrang = 2;
+    const soLuongItemTrenTrang = 10;
     let currentPage = searchParams.get('page');
+
     const getProducts = async () => {
         await httpRequest.get(`/products/gioitinh/${gt}`).then((response) => setALLProducts(response.data));
         await httpRequest
@@ -24,6 +25,7 @@ function PhanLoai() {
     };
     useEffect(() => {
         params.gt === 'donghonam' ? (document.title = 'Đồng hồ nam') : (document.title = 'Đồng hồ nữ');
+        window.scrollTo(0, 0);
         getProducts();
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -31,10 +33,7 @@ function PhanLoai() {
 
     const handlePageClick = async (event) => {
         let page = event.selected + 1;
-        await httpRequest
-            .get(`/products/gioitinh/${gt}?page=${page}`)
-            .then((response) => setProductInPagee(response.data));
-        setSearchParams({ page: page });
+        setSearchParams({ page });
     };
 
     return (

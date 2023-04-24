@@ -21,6 +21,14 @@ function ProductCreateUpdate() {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
+    const xoaKhoangTrang = () => {
+        const inputs = document.querySelectorAll('input');
+        document.querySelector('#decription').value = document.querySelector('#decription').value.trim();
+        for (const input of inputs) {
+            input.value = input.value.trim();
+        }
+    };
+
     return (
         <>
             <h1>{title}</h1>
@@ -52,6 +60,9 @@ function ProductCreateUpdate() {
                         className="form-control"
                         id="name"
                         name="name"
+                        required
+                        onInvalid={(e) => e.target.setCustomValidity('Hãy nhập tên sản phẩm')}
+                        onInput={(e) => e.target.setCustomValidity('')}
                         defaultValue={product.name || ''}
                     />
                 </div>
@@ -71,10 +82,13 @@ function ProductCreateUpdate() {
                         Giá bán
                     </label>
                     <input
-                        type="text"
+                        type="number"
                         className="form-control"
                         id="price"
                         name="price"
+                        required
+                        onInvalid={(e) => e.target.setCustomValidity('Giá bán sản phẩm phải là dạng số')}
+                        onInput={(e) => e.target.setCustomValidity('')}
                         defaultValue={product.price || ''}
                     />
                 </div>
@@ -88,6 +102,9 @@ function ProductCreateUpdate() {
                         className="form-control"
                         id="ThuongHieu"
                         name="ThuongHieu"
+                        required
+                        onInvalid={(e) => e.target.setCustomValidity('Hãy nhập tên thương hiệu')}
+                        onInput={(e) => e.target.setCustomValidity('')}
                         defaultValue={product.ThuongHieu || ''}
                     />
                 </div>
@@ -100,6 +117,10 @@ function ProductCreateUpdate() {
                         className="form-control"
                         id="decription"
                         name="Decription"
+                        rows="6"
+                        required
+                        onInvalid={(e) => e.target.setCustomValidity('Hãy nhập mô tả')}
+                        onInput={(e) => e.target.setCustomValidity('')}
                         defaultValue={product.Decription || ''}
                     ></textarea>
                 </div>
@@ -109,10 +130,13 @@ function ProductCreateUpdate() {
                         Số lượng
                     </label>
                     <input
-                        type="text"
+                        type="number"
                         className="form-control"
                         id="SoLuong"
                         name="SoLuong"
+                        required
+                        onInvalid={(e) => e.target.setCustomValidity('Hãy nhập số lượng sản phẩm')}
+                        onInput={(e) => e.target.setCustomValidity('')}
                         defaultValue={product.SoLuong || ''}
                     />
                 </div>
@@ -121,10 +145,17 @@ function ProductCreateUpdate() {
                     <label htmlFor="img" className="form-label">
                         Link ảnh
                     </label>
-                    <input type="text" className="form-control" id="img" name="img" defaultValue={product.img || ''} />
+                    <input
+                        type="text"
+                        className="form-control"
+                        required
+                        id="img"
+                        name="img"
+                        defaultValue={product.img || ''}
+                    />
                 </div>
 
-                <button type="submit" className="mb-5 btn btn-primary">
+                <button type="submit" className="mb-5 btn btn-primary" onClick={xoaKhoangTrang}>
                     {productID.id ? 'Cập nhật' : 'Thêm sản phẩm'}
                 </button>
             </form>

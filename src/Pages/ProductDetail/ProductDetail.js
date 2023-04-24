@@ -145,7 +145,8 @@ function ProductDetail() {
                         <span className={cx('product-owner')}>{product.ThuongHieu}</span>
 
                         <p className={cx('product-description-title')}>Mô tả:</p>
-                        <p className={cx('product-description')}>{product.Decription}</p>
+
+                        <pre className={cx('product-description')}>{product.Decription}</pre>
 
                         <div className={cx('product-action')}>
                             <div className={cx('product-action-plus-minus')}>

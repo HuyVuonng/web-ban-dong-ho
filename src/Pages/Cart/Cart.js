@@ -2,7 +2,7 @@ import classNames from 'classnames/bind';
 import styles from './Cart.module.scss';
 import { useEffect, useRef, useState } from 'react';
 import httpRequest from '~/utils/httprequest';
-
+import { Link } from 'react-router-dom';
 const cx = classNames.bind(styles);
 
 function Cart() {
@@ -22,6 +22,7 @@ function Cart() {
     };
     useEffect(() => {
         window.scrollTo(0, 0);
+        document.title = 'Giỏ hàng';
         if (isload.current) {
             if (prodInlocalStrorage.length > 0) {
                 prodInlocalStrorage.forEach((element) => {
@@ -125,11 +126,13 @@ function Cart() {
                         </tbody>
                     </table>
                 </div>
-                <div className={cx('cart-total-prices')}>
-                    <h2>Tổng tiền</h2>
-                    <h3>{tongtien}</h3>
-                    <button>TIẾN HÀNH THANH TOÁN</button>
-                </div>
+                {prodInlocalStrorage.length > 0 && (
+                    <div className={cx('cart-total-prices')}>
+                        <h2>Tổng tiền</h2>
+                        <h3>{tongtien}</h3>
+                        <Link to="/thanhtoan">TIẾN HÀNH THANH TOÁN</Link>
+                    </div>
+                )}
             </div>
 
             {/* Confirm delete modal */}

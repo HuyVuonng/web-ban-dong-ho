@@ -164,12 +164,20 @@ function ProductCreateUpdate() {
                     <input
                         type="file"
                         className="form-control"
-                        required
                         id="img"
                         name="img"
+                        required={!product.img}
                         onChange={handlePrevIMG}
-                        defaultValue={product.img || ''}
                     />
+                    {/* cach1 dung if else */}
+                    {/* {(() => {
+                        if (product.img && !prevIMG) {
+                            return <img src={product.img} alt="" width="20%" />;
+                        } else if (prevIMG) {
+                            return <img src={prevIMG.preview} alt="" width="20%" />;
+                        }
+                    })()} */}
+                    {/* cach2 */}
                     {product.img && !prevIMG && <img src={product.img} alt="" width="20%" />}
 
                     {prevIMG && <img src={prevIMG.preview} alt="" width="20%" />}

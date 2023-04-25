@@ -1,0 +1,87 @@
+.thanhtoan-wrapper {
+    width: 1200px;
+    margin: 0 auto;
+    height: 100vh;
+    .thanhtoan-title {
+        text-align: center;
+    }
+    .thanhtoan-content {
+        display: flex;
+        .thanhtoan-input {
+            outline: none;
+            border: none;
+            font-size: 1.6rem;
+            line-height: 1.6rem;
+            padding: 10px;
+            background-color: #f3f3f3;
+            display: block;
+            width: 100%;
+        }
+
+        .thanhtoan-address {
+            width: 50%;
+            flex: 1;
+            padding-right: 20px;
+
+            .thanhtoan-block {
+                margin-top: 20px;
+
+                label {
+                    font-size: 1.4rem;
+                }
+            }
+
+            .thanhtoan-sdt,
+            .thanhtoan-email,
+            .thanhtoan-thanhpho,
+            .thanhtoan-diachi {
+                display: inline-block;
+                width: 50%;
+            }
+
+            .thanhtoan-sdt,
+            .thanhtoan-thanhpho {
+                padding-right: 10px;
+            }
+        }
+        .thanhtoan-prods {
+            width: 50%;
+            flex: 1;
+            border: 1px solid rgb(235, 235, 235);
+            padding: 30px;
+
+            .thanhtoan-prods-info {
+                display: grid;
+                grid-template-columns: 2fr 1fr;
+                border-bottom: 1px solid rgb(235, 235, 235);
+                font-size: 1.6rem;
+                padding: 10px 0;
+
+                .thanhtoan-prods-tongtien,
+                .thanhtoan-prods-tongtien-title {
+                    text-align: end;
+                }
+                .thanhtoan-prods-tongtien-toanhoadon {
+                    text-align: end;
+                    font-size: 2rem;
+                    font-weight: bold;
+                }
+            }
+
+            .thanhtoan-prods-btn-dathang {
+                width: 100%;
+                border: none;
+                height: 50px;
+                font-size: 1.8rem;
+                text-decoration: none;
+                text-transform: uppercase;
+                background-color: #c89979;
+                color: white;
+
+                &:hover {
+                    opacity: 0.7;
+                }
+            }
+        }
+    }
+}

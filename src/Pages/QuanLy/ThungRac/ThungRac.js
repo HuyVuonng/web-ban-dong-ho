@@ -45,6 +45,7 @@ function ThungRac() {
 
     const handlePageClick = async (event) => {
         let page = event.selected + 1;
+        window.scrollTo(0, 0);
         await httpRequest.get(`/products/trash?page=${page}`).then((response) => setProductInPagee(response.data));
     };
 

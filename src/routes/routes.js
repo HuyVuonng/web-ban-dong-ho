@@ -8,6 +8,7 @@ import ProductCreateUpdate from '~/Pages/ProductCreateUpdate';
 import PhanLoai from '~/Pages/PhanLoai';
 import ThungRac from '~/Pages/QuanLy/ThungRac';
 import ThanhToan from '~/Pages/ThanhToan';
+import DatHangThanhCong from '~/Pages/DatHangThanhCong';
 
 const publicRoutes = [
     { path: config.routes.home, component: Home },
@@ -17,6 +18,7 @@ const publicRoutes = [
     { path: config.routes.productDetails, component: ProductDetail },
     { path: config.routes.productEdit, component: ProductCreateUpdate },
     { path: config.routes.thungrac, component: ThungRac },
+    { path: config.routes.dathangthanhcong, component: DatHangThanhCong },
     { path: config.routes.thanhtoan, component: ThanhToan },
 ];
 

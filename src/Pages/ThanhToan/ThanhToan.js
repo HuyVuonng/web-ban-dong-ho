@@ -58,10 +58,54 @@ function ThanhToan() {
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
+    const getbuyProduct = async (id, sl) => {
+        let productOld;
+        await httpRequest.get('/products', { params: { id: id } }).then((response) => (productOld = response.data));
+        let soluonMoi = +productOld.SoLuong - sl;
+        let daBan = +productOld.daBan + sl;
+        await httpRequest.patch(`/products/updateQuantity/${id}`, { ['SoLuong']: soluonMoi, ['daBan']: daBan });
+    };
+
+    const createBill = async () => {
+        const hoTen = document.querySelector(`#${cx('hoTen')}`).value;
+        const soDienThoai = document.querySelector(`#${cx('sdt')}`).value;
+        const email = document.querySelector(`#${cx('email')}`).value;
+        const thanhPho = document.querySelector(`#${cx('thanhpho')}`).value;
+        const diaChi = document.querySelector(`#${cx('diachi')}`).value;
+        const prodBuy = JSON.parse(localStorage.getItem('idItems'));
+
+        if (
+            hoTen.trim() &&
+            soDienThoai.trim() &&
+            email.trim() &&
+            thanhPho.trim() &&
+            diaChi.trim() &&
+            prodBuy.length > 0
+        ) {
+            const bill = {
+                hoTen,
+                soDienThoai,
+                email,
+                thanhPho,
+                diaChi,
+                prodBuy,
+            };
+            await prodBuy.forEach((prod) => {
+                getbuyProduct(prod.id_prod, prod.sl);
+            });
+            localStorage.removeItem('idItems');
+            window.location.assign('/dathangthanhcong');
+            await httpRequest.post('/bills/create', bill);
+        }
+    };
     return (
         <main className={cx('thanhtoan-wrapper')}>
             <h1 className={cx('thanhtoan-title')}>Thanh Toán</h1>
-            <form>
+            <form
+                onSubmit={(e) => {
+                    e.preventDefault();
+                }}
+            >
                 <div className={cx('thanhtoan-content')}>
                     <div className={cx('thanhtoan-address')}>
                         <h4>Địa chỉ nhận hàng</h4>
@@ -145,7 +189,9 @@ function ThanhToan() {
                                 <span className={cx('thanhtoan-prods-tongtien-toanhoadon')}>{tongtien}</span>
                             </div>
                         </div>
-                        <button className={cx('thanhtoan-prods-btn-dathang')}>Đặt hàng</button>
+                        <button className={cx('thanhtoan-prods-btn-dathang')} onClick={createBill}>
+                            Đặt hàng
+                        </button>
                     </div>
                 </div>
             </form>

@@ -6,6 +6,7 @@ const routes = {
     productDetails: '/productDetails/:ID',
     productEdit: '/product/:id/edit',
     thanhtoan: '/thanhtoan',
+    dathangthanhcong: '/dathangthanhcong',
     phanloai: '/:gt',
 };
 

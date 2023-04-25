@@ -1,0 +1,18 @@
+.wrapper {
+    width: 1200px;
+    height: 100vh;
+    text-align: center;
+    img {
+        width: 100%;
+
+        object-fit: cover;
+    }
+    a {
+        text-decoration: none;
+        padding: 15px;
+        font-size: 1.6rem;
+        color: white;
+        background-color: #c89979;
+        display: inline-block;
+    }
+}

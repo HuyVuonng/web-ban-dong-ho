@@ -44,7 +44,6 @@ function BillItem({ data, callback, setdata, calldata, datachange, lablebtn, don
         const id = e.target.dataset.bill;
 
         const dataProduct = JSON.parse(e.target.dataset.product);
-        console.log(dataProduct);
 
         if (done === false) {
             for (let i = 0; i < dataProduct.length; i++) {

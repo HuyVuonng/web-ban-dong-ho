@@ -93,16 +93,6 @@ function ProductDetail() {
     };
 
     const AddtoCart = () => {
-        // cookie.current = product._id;
-        // var newcookie = [];
-
-        // if (newcookie.length < 0) {
-        //     newcookie.push(cookie.current);
-        // } else {
-        //     newcookie = [...newcookie, cookie.current];
-        // }
-        // document.cookie = `idProds=${newcookie}`;
-        // console.log(newcookie);
         let tontai = false;
         let location;
         let id_items = localStorage.getItem('idItems') ? JSON.parse(localStorage.getItem('idItems')) : [];

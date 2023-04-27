@@ -46,6 +46,17 @@
                 color: #c89979;
             }
         }
+
+        .quantity {
+            margin-bottom: 20px;
+            font-size: 1.4rem;
+            color: #c89979;
+
+            .remaining,
+            .bought {
+                padding: 15px;
+            }
+        }
     }
 
     .body-btn {

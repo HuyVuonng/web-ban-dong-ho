@@ -1,0 +1,28 @@
+.phantrang {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+}
+.phantrang-page {
+    color: black;
+    margin: 5px;
+
+    &.phantrang-PageActive {
+        border: 1px solid black;
+        padding: 0 8px;
+        border-radius: 50%;
+        background-color: #e5e4e433;
+    }
+
+    .phantrang-PageLink {
+        display: block;
+        padding: 3px;
+        text-decoration: none;
+        color: black;
+        &:hover {
+            opacity: 0.5;
+        }
+    }
+}

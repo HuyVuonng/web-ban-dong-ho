@@ -1,0 +1,22 @@
+.QLDH-wrapper {
+    .QLDH-nav {
+        .QLDH-button-nav {
+            width: 150px;
+            border: none;
+            background-color: transparent;
+            height: 50px;
+            font-size: 1.6rem;
+            transition: all 0.2s ease;
+
+            &.active {
+                background-color: #c89979;
+                color: white;
+                border-radius: 5px;
+                box-shadow: rgba(0, 0, 0, 0.5) 0px 2px 20px 0px;
+            }
+        }
+    }
+    .QLDH-content {
+        margin-top: 20px;
+    }
+}

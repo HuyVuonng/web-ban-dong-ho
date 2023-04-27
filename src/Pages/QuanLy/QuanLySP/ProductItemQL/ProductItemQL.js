@@ -12,13 +12,6 @@ function ProductItemQL({ data }) {
         currency: 'VND',
     }).format(data.price);
 
-    const Oldprice = () => {
-        let oldprice = +data.price + (data.price * 30) / 100;
-        return Intl.NumberFormat('vi-VN', {
-            style: 'currency',
-            currency: 'VND',
-        }).format(oldprice);
-    };
     // const getid = (e) => {
     //     IdDelete.current = e.target.dataset.id;
     // };
@@ -35,8 +28,11 @@ function ProductItemQL({ data }) {
                     <div className={cx('nd')}>
                         <span className={cx('sp-name')}>{data.name}</span>
                         <div className={cx('price')}>
-                            <span className={cx('price-old')}>{Oldprice()}</span>
                             <span className={cx('price-new')}>{price}</span>
+                        </div>
+                        <div className={cx('quantity')}>
+                            <span className={cx('remaining')}>Còn lại: {data.SoLuong}</span>
+                            <span className={cx('bought')}>Đã bán: {data.daBan}</span>
                         </div>
                     </div>
                 </Link>

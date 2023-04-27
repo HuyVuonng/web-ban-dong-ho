@@ -3,7 +3,7 @@ import styles from './QuanLy.module.scss';
 import { useEffect, useState } from 'react';
 import ProductCreateUpdate from '../ProductCreateUpdate';
 import QuanLySP from './QuanLySP';
-import QuanLyTK from './QuanLyTK';
+import QuanLyDonHang from './QuanLyDonHang';
 
 const cx = classNames.bind(styles);
 function QuanLy() {
@@ -38,8 +38,8 @@ function QuanLy() {
             case 'Quản Lý Sản Phẩm':
                 setPage(<QuanLySP />);
                 break;
-            case 'Quản Lý Tài Khoản':
-                setPage(<QuanLyTK />);
+            case 'Quản Lý Đơn Hàng':
+                setPage(<QuanLyDonHang />);
                 break;
             case 'Thêm sản phẩm':
                 setPage(<ProductCreateUpdate />);
@@ -56,7 +56,7 @@ function QuanLy() {
                     Quản Lý Sản Phẩm
                 </h2>
                 <h2 className={cx('lable')} onClick={changeLableproc}>
-                    Quản Lý Tài Khoản
+                    Quản Lý Đơn Hàng
                 </h2>
                 <h2 className={cx('lable')} onClick={changeLableproc}>
                     Thêm sản phẩm

@@ -2,13 +2,14 @@ import classNames from 'classnames/bind';
 import styles from './ThanhToan.module.scss';
 import { useEffect, useRef, useState } from 'react';
 import httpRequest from '~/utils/httprequest';
-import { Link } from 'react-router-dom';
+import Loadding from '~/Components/Loadding/Loadding';
 
 const cx = classNames.bind(styles);
 
 function ThanhToan() {
     const [prodctIncart, setProdctIncart] = useState([]);
     let loadFirst = useRef(true);
+    const [loading, setLoading] = useState(false);
     const [tongtien, setTongTien] = useState(0);
 
     const prodInlocalStrorage = localStorage.getItem('idItems') ? JSON.parse(localStorage.getItem('idItems')) : [];
@@ -58,13 +59,6 @@ function ThanhToan() {
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
-    const getbuyProduct = async (id, sl) => {
-        let productOld;
-        await httpRequest.get('/products', { params: { id: id } }).then((response) => (productOld = response.data));
-        let soluonMoi = +productOld.SoLuong - sl;
-        let daBan = +productOld.daBan + sl;
-        await httpRequest.patch(`/products/updateQuantity/${id}`, { ['SoLuong']: soluonMoi, ['daBan']: daBan });
-    };
 
     const createBill = async () => {
         const hoTen = document.querySelector(`#${cx('hoTen')}`).value;
@@ -73,13 +67,14 @@ function ThanhToan() {
         const thanhPho = document.querySelector(`#${cx('thanhpho')}`).value;
         const diaChi = document.querySelector(`#${cx('diachi')}`).value;
         const prodBuy = JSON.parse(localStorage.getItem('idItems'));
-
+        const tongTien = document.querySelector(`.${cx('thanhtoan-prods-tongtien-toanhoadon')}`).innerText;
         if (
             hoTen.trim() &&
             soDienThoai.trim() &&
             email.trim() &&
             thanhPho.trim() &&
             diaChi.trim() &&
+            !isNaN(soDienThoai) &&
             prodBuy.length > 0
         ) {
             const bill = {
@@ -89,18 +84,33 @@ function ThanhToan() {
                 thanhPho,
                 diaChi,
                 prodBuy,
+                tongTien,
             };
-            await prodBuy.forEach((prod) => {
-                getbuyProduct(prod.id_prod, prod.sl);
-            });
-            localStorage.removeItem('idItems');
-            window.location.assign('/dathangthanhcong');
-            await httpRequest.post('/bills/create', bill);
+            httpRequest.post('/bills/create', bill);
+
+            for (let i = 0; i < prodBuy.length; i++) {
+                let productOld;
+                await httpRequest
+                    .get('/products', { params: { id: prodBuy[i].id_prod } })
+                    .then((response) => (productOld = response.data));
+                let soluonMoi = +productOld.SoLuong - prodBuy[i].sl;
+                let daBan = +productOld.daBan + prodBuy[i].sl;
+                httpRequest.patch(`/products/updateQuantity/${prodBuy[i].id_prod}`, {
+                    SoLuong: soluonMoi,
+                    daBan: daBan,
+                });
+            }
+            setLoading(true);
+            setTimeout(() => {
+                localStorage.removeItem('idItems');
+                window.location.assign('/dathangthanhcong');
+            }, 500);
         }
     };
     return (
         <main className={cx('thanhtoan-wrapper')}>
             <h1 className={cx('thanhtoan-title')}>Thanh Toán</h1>
+            {loading && <Loadding />}
             <form
                 onSubmit={(e) => {
                     e.preventDefault();
@@ -161,7 +171,7 @@ function ThanhToan() {
                                 type="text"
                                 id={cx('diachi')}
                                 className={cx('thanhtoan-input')}
-                                name="email"
+                                name="diachi"
                                 placeholder="Nhập địa chỉ nơi bạn ở"
                                 required
                             />

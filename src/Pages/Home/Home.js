@@ -10,8 +10,8 @@ const cx = classNames.bind(styles);
 function Home() {
     let load = useRef(true);
     const [loadding, setloading] = useState(true);
-    const [bestseller, setBestseller] = useState({});
-    const [newProduct, setNewProduct] = useState({});
+    const [bestseller, setBestseller] = useState([]);
+    const [newProduct, setNewProduct] = useState([]);
 
     const fetchdata = async () => {
         const res = await httpRequest.get('products/bestseller');

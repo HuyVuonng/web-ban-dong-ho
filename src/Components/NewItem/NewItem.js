@@ -9,7 +9,7 @@ function NewItem() {
             <div className={cx('news')}>
                 <div className={cx('news-img-transition')}>
                     <img
-                        src="http://mauweb.monamedia.net/donghohaitrieu/wp-content/uploads/2019/07/new-4.jpg"
+                        src="https://web-ban-dong-ho-be.onrender.com/img/new-4.jpg"
                         alt=""
                         className={cx('news-img')}
                     />

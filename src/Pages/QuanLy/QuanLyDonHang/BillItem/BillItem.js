@@ -50,10 +50,6 @@ function BillItem({ data, callback, setdata, calldata, datachange, lablebtn, don
             for (let i = 0; i < dataProduct.length; i++) {
                 let soluonMoi = +dataProduct[i].SoLuong + dataProduct[i].slmua;
                 let daBan = +dataProduct[i].daBan - dataProduct[i].slmua;
-                console.log('slCU: ' + dataProduct[i].SoLuong);
-                console.log('slmoiL: ' + soluonMoi);
-                console.log('daban cu:' + dataProduct[i].daBan);
-                console.log('dabanmo ' + daBan);
 
                 await httpRequest.patch(`/products/updateQuantity/${dataProduct[i]._id}`, {
                     SoLuong: soluonMoi,

@@ -45,7 +45,7 @@ function ProductCreateUpdate() {
     };
 
     return (
-        <>
+        <div style={{ width: 1200, margin: 'auto' }}>
             <h1>{title}</h1>
             {(() => {
                 if (product.GioiTinh) {
@@ -187,7 +187,7 @@ function ProductCreateUpdate() {
                     {productID.id ? 'Cập nhật' : 'Thêm sản phẩm'}
                 </button>
             </form>
-        </>
+        </div>
     );
 }
 

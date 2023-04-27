@@ -41,14 +41,17 @@ function Cart() {
     }, [prodInlocal]);
 
     const tinhtongtien = () => {
-        let total = document.querySelectorAll(`.${cx('Item-total-price')}`);
-        let tong = 0;
-        for (let i = 0; i < total.length; i++) {
-            let a = total[i].innerText.split('₫');
-            let tien = Number(a[0].replaceAll('.', ''));
-            tong += tien;
-        }
-        setTongtien(priceConver(tong));
+        setTimeout(() => {
+            let total = document.querySelectorAll(`.${cx('Item-total-price')}`);
+            console.log(total);
+            let tong = 0;
+            for (let i = 0; i < total.length; i++) {
+                let a = total[i].innerText.split('₫');
+                let tien = Number(a[0].replaceAll('.', ''));
+                tong += tien;
+            }
+            setTongtien(priceConver(tong));
+        }, 1000);
     };
 
     const priceConver = (price) => {

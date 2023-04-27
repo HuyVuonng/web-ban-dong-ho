@@ -29,14 +29,16 @@ function ThanhToan() {
     };
 
     const tinhtongtien = () => {
-        let total = document.querySelectorAll(`.${cx('thanhtoan-prods-tongtien')}`);
-        let tongtien = 0;
-        for (let i = 0; i < total.length; i++) {
-            let a = total[i].innerText.split('₫');
-            let tien = Number(a[0].replaceAll('.', ''));
-            tongtien += tien;
-        }
-        setTongTien(priceConver(tongtien));
+        setTimeout(() => {
+            let total = document.querySelectorAll(`.${cx('thanhtoan-prods-tongtien')}`);
+            let tongtien = 0;
+            for (let i = 0; i < total.length; i++) {
+                let a = total[i].innerText.split('₫');
+                let tien = Number(a[0].replaceAll('.', ''));
+                tongtien += tien;
+            }
+            setTongTien(priceConver(tongtien));
+        }, 1000);
     };
 
     useEffect(() => {

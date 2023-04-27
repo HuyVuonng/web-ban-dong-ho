@@ -62,8 +62,8 @@ function ProductCreateUpdate() {
                 method="post"
                 action={
                     !productID.id
-                        ? 'http://localhost:3000/products/create'
-                        : `http://localhost:3000/products/${productID.id}/edit?_method=PUT`
+                        ? 'https://web-ban-dong-ho-be.onrender.com/products/create'
+                        : `https://web-ban-dong-ho-be.onrender.com/products/${productID.id}/edit?_method=PUT`
                 }
                 encType="multipart/form-data"
             >

@@ -18,6 +18,7 @@ function Cart() {
         await httpRequest.get('/products', { params: { id: id } }).then((response) => {
             response.data.slmua = sl;
             setProduct((pre) => [...pre, response.data]);
+            tinhtongtien();
         });
     };
     useEffect(() => {
@@ -34,7 +35,6 @@ function Cart() {
             isload.current = false;
         }
         setTimeout(() => {
-            tinhtongtien();
             isload.current = true;
         }, 200);
         // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -28,11 +28,30 @@ function ProductCreateUpdate() {
         };
     }, [prevIMG]);
 
+    const checkFile = (e) => {
+        const ipf = document.querySelector('#img');
+        const imglink = {};
+        if (e.target.value.trim().length > 0) {
+            ipf.setAttribute('disabled', true);
+            imglink.preview = e.target.value;
+            setPrevIMG(imglink);
+        } else {
+            ipf.removeAttribute('disabled');
+            setPrevIMG();
+        }
+    };
+
     const handlePrevIMG = (e) => {
+        const ipurl = document.querySelector('#img2');
         if (e.target.files[0]) {
+            ipurl.setAttribute('disabled', true);
             const file = e.target.files[0];
             file.preview = URL.createObjectURL(file);
             setPrevIMG(file);
+        } else {
+            ipurl.removeAttribute('disabled');
+            setPrevIMG();
+            URL.revokeObjectURL(prevIMG.preview);
         }
     };
 
@@ -159,7 +178,7 @@ function ProductCreateUpdate() {
 
                 <div className="mb-3 mt-4">
                     <label htmlFor="img" className="form-label">
-                        Link ảnh
+                        Tải ảnh lên
                     </label>
                     <input
                         type="file"
@@ -168,6 +187,17 @@ function ProductCreateUpdate() {
                         name="img"
                         required={!product.img}
                         onChange={handlePrevIMG}
+                    />
+                    <label htmlFor="img" className="form-label">
+                        hoặc link ảnh
+                    </label>
+                    <input
+                        type="url"
+                        className="form-control mb-3"
+                        id="img2"
+                        name="img"
+                        required={!product.img}
+                        onChange={checkFile}
                     />
                     {/* cach1 dung if else */}
                     {/* {(() => {

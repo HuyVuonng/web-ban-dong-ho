@@ -141,7 +141,7 @@ function ProductDetail() {
 
                         <p className={cx('product-description-title')}>Mô tả:</p>
 
-                        <span className={cx('product-description')}>{setDescription(product.Decription)}</span>
+                        <div className={cx('product-description')}>{setDescription(product.Decription)}</div>
 
                         <div className={cx('product-action')}>
                             <div className={cx('product-action-plus-minus')}>

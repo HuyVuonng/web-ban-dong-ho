@@ -66,11 +66,11 @@ function Header() {
                 <div className={cx('header-with-search')}>
                     <div className={cx('header-logo')}>
                         <Link to="/" className={cx('header-logo-link')}>
-                            <img
+                            {/* <img
                                 src="https://web-ban-dong-ho-be.onrender.com/img/logo-mona-2.png"
                                 alt=""
                                 className={cx('header-logo-img')}
-                            />
+                            /> */}
                         </Link>
                     </div>
 

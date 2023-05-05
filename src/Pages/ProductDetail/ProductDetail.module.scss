@@ -51,6 +51,9 @@
                 line-height: initial;
                 white-space: pre-wrap;
                 height: 300px;
+                td {
+                    padding-right: 25px;
+                }
             }
             .product-action {
                 margin-top: 100px;

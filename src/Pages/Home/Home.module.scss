@@ -14,10 +14,12 @@
     margin-top: 20px;
 
     .best-seller-product {
-        display: grid;
+        // display: flex;
+        // gap: 20px;
+        // flex-wrap: nowrap;
         //chia lamf 4 cot va khong bi thay doi kich thuoc khi tang gap
-        grid-template-columns: repeat(4, 1fr);
-        grid-gap: 20px;
+        // grid-template-columns: repeat(4, 1fr);
+        // grid-gap: 20px;
     }
 }
 
@@ -42,7 +44,7 @@
         display: grid;
         //chia lamf 5 cot va khong bi thay doi kich thuoc khi tang gap
         grid-template-columns: repeat(5, 1fr);
-        grid-gap: 20px;
+        grid-gap: 10px;
     }
 }
 

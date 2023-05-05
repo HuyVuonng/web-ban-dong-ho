@@ -6,6 +6,10 @@ import httpRequest from '~/utils/httprequest';
 import { useEffect, useState, useRef } from 'react';
 import Loadding from '~/Components/Loadding';
 
+import Slider from 'react-slick';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons';
+
 const cx = classNames.bind(styles);
 function Home() {
     let load = useRef(true);
@@ -28,6 +32,25 @@ function Home() {
         }
     }, []);
 
+    var settings = {
+        dots: true,
+        infinite: true,
+        arrows: true,
+        speed: 2000,
+        slidesToShow: 4,
+        slidesToScroll: 4,
+        autoplay: true,
+        prevArrow: (
+            <button type="button" className="slick-prev pull-left slick-prev-btn slick-btn">
+                <FontAwesomeIcon icon={faAngleLeft} className="slick-prev-btn-icon" />
+            </button>
+        ),
+        nextArrow: (
+            <button type="button" className="slick-next pull-right slick-next-btn slick-btn">
+                <FontAwesomeIcon icon={faAngleRight} className="slick-next-btn-icon" />
+            </button>
+        ),
+    };
     const changeLableproc = (e) => {
         const lable = document.querySelectorAll(`.${cx('lable')}`);
         for (let i = 0; i < lable.length; i++) {
@@ -45,9 +68,11 @@ function Home() {
                     <div className={cx('best-seller')}>
                         <h2 className={cx('lable')}>Sản phẩm bán chạy</h2>
                         <div className={cx('best-seller-product')}>
-                            {bestseller.map((result, index) => (
-                                <ProductItem key={index} data={result} />
-                            ))}
+                            <Slider {...settings}>
+                                {bestseller.map((result, index) => (
+                                    <ProductItem key={index} data={result} />
+                                ))}
+                            </Slider>
                         </div>
                     </div>
 

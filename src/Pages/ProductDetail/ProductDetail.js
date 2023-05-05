@@ -13,6 +13,7 @@ const cx = classNames.bind(styles);
 function ProductDetail() {
     const input = useRef();
     const txtErr = useRef();
+    let description = useRef();
     let productID = useParams();
     const [quantity, setQuantity] = useState(1);
     const [product, setProduct] = useState([]);
@@ -37,6 +38,17 @@ function ProductDetail() {
         getProductDetail();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [productID]);
+
+    if (document.readyState === 'complete') {
+        // console.log('document is already ready, just execute code here');
+        if (document.querySelector(`.${cx('product-description')}`)) {
+            document.querySelector(`.${cx('product-description')}`).innerHTML = product.Decription;
+        }
+    } else {
+        document.addEventListener('DOMContentLoaded', function () {
+            console.log('document was not ready, place code here');
+        });
+    }
 
     const changePrice = (price) => {
         const priceChange = Intl.NumberFormat('vi-VN', {
@@ -117,7 +129,6 @@ function ProductDetail() {
         localStorage.setItem('idItems', JSON.stringify(id_items));
         toast.success(<Link to="/cart">Đã thêm vào giỏ hàng</Link>, { theme: 'dark', autoClose: 1000 });
     };
-
     return (
         <div className={cx('wrapper-prosuct-detail')}>
             {loadding ? (
@@ -136,7 +147,7 @@ function ProductDetail() {
 
                         <p className={cx('product-description-title')}>Mô tả:</p>
 
-                        <pre className={cx('product-description')}>{product.Decription}</pre>
+                        <span className={cx('product-description')} ref={description}></span>
 
                         <div className={cx('product-action')}>
                             <div className={cx('product-action-plus-minus')}>

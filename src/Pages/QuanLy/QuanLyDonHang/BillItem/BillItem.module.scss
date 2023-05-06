@@ -12,7 +12,6 @@
         cursor: pointer;
         .BillItem-delete-icon {
             font-size: 1.8rem;
-
             padding: 32px 15px;
             border-top-left-radius: 10px;
             border-bottom-left-radius: 10px;
@@ -77,6 +76,7 @@
             display: grid;
             align-items: center;
             font-size: 1.8rem;
+            grid-gap: 10px;
             grid-template-columns: 0.3fr 3fr 1fr 1fr;
             border-bottom: 1px solid rgba(0, 0, 0, 0.3);
             padding: 15px 0;
@@ -125,8 +125,15 @@
 // mobile
 @media only screen and (max-width: 46.1875em) {
     .BillItem-time,
-    .BillItem-tp {
+    .BillItem-tp,
+    .BillItem-tongTien {
         display: none !important;
+    }
+    .BillItem-description-infor {
+        padding: 0 10px;
+        .BillItem-product-wrapper {
+            grid-template-columns: 1fr 1fr !important;
+        }
     }
 }
 @media only screen and (min-width: 46.25em) and (max-width: 63.9375em) {

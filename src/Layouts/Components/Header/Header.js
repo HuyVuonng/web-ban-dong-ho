@@ -142,7 +142,7 @@ function Header() {
                     <div className={cx('mobi-logo')}>
                         <Link to="/" className={cx('header-logo-link')}>
                             <img
-                                src="http://mauweb.monamedia.net/donghohaitrieu/wp-content/uploads/2019/07/logo-mona-2.png"
+                                src="https://web-ban-dong-ho-be.onrender.com/img/logo-mona-2.png"
                                 alt=""
                                 className={cx('mobi-logo-img')}
                             />

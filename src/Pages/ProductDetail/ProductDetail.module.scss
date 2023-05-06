@@ -114,6 +114,7 @@
 @media only screen and (max-width: 46.1875em) {
     .wrapper-prosuct-detail {
         width: 100%;
+        overflow: hidden;
         margin: auto;
         margin-top: 100px;
         overflow: hidden;
@@ -126,6 +127,49 @@
             }
             .product-info {
                 width: 100%;
+                .product-action {
+                    .product-action-plus-minus {
+                        align-items: center;
+                        display: flex;
+                        .product-icon-minus,
+                        .product-icon-plus {
+                            padding: 10px;
+                        }
+                        .product-quantity {
+                            width: 200px;
+                            height: 25px;
+                            line-height: 100px;
+                            font-size: 1.6rem;
+                        }
+                    }
+                    .product-action-buy {
+                        margin-bottom: 30px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+/*tablet*/
+@media only screen and (min-width: 46.25em) and (max-width: 63.9375em) {
+    .wrapper-prosuct-detail {
+        width: 100%;
+        overflow: hidden;
+        margin: auto;
+        margin-top: 100px;
+        overflow: hidden;
+
+        .container {
+            flex-direction: column;
+            padding: 0;
+            .img-product {
+                width: 100%;
+            }
+            .product-info {
+                width: 100%;
+                margin: 0;
+                padding: 0 45px;
                 .product-action {
                     .product-action-plus-minus {
                         align-items: center;

@@ -13,14 +13,14 @@
 .best-seller {
     margin-top: 20px;
 
-    .best-seller-product {
-        // display: flex;
-        // gap: 20px;
-        // flex-wrap: nowrap;
-        //chia lamf 4 cot va khong bi thay doi kich thuoc khi tang gap
-        // grid-template-columns: repeat(4, 1fr);
-        // grid-gap: 20px;
-    }
+    // .best-seller-product {
+    // display: flex;
+    // gap: 20px;
+    // flex-wrap: nowrap;
+    //chia lamf 4 cot va khong bi thay doi kich thuoc khi tang gap
+    // grid-template-columns: repeat(4, 1fr);
+    // grid-gap: 20px;
+    // }
 }
 
 .product2 {
@@ -134,6 +134,7 @@
     }
 
     .wrapper-homepage {
+        overflow: hidden;
         width: 100%;
         padding: 0 10px;
     }
@@ -144,6 +145,34 @@
     .news {
         grid-template-columns: 1fr;
         column-gap: 2px;
+    }
+
+    .dk-info {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 55px;
+    }
+    .dk-input1 {
+        width: 65vw;
+    }
+}
+/*tablet*/
+@media only screen and (min-width: 46.25em) and (max-width: 63.9375em) {
+    .product2 {
+        .products {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+
+    .wrapper-homepage {
+        width: 100%;
+        padding: 0 10px;
+        overflow: hidden;
+    }
+    .content {
+        margin-top: 100px;
     }
 
     .dk-info {

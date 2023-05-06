@@ -80,6 +80,7 @@
 // responsive
 @media only screen and (max-width: 46.1875em) {
     .wrapper-footer {
+        overflow: hidden;
         width: 100%;
     }
     .footer {
@@ -97,5 +98,19 @@
     }
     .copyright {
         transform: translateY(0%);
+    }
+}
+
+/*tablet*/
+@media only screen and (min-width: 46.25em) and (max-width: 63.9375em) {
+    .footer {
+        padding: 10px 10px;
+    }
+    .wrapper-footer {
+        overflow: hidden;
+        padding: 18px;
+    }
+    .copyright {
+        transform: translateY(100%);
     }
 }

@@ -90,7 +90,32 @@
 // mobile
 @media only screen and (max-width: 46.1875em) {
     .thanhtoan-wrapper {
+        overflow: hidden;
         width: 100%;
+        margin: 100px auto 0;
+        height: 100vh;
+        padding: 0 15px;
+
+        .thanhtoan-content {
+            flex-direction: column;
+
+            .thanhtoan-address,
+            .thanhtoan-prods {
+                width: 100%;
+                padding: 0;
+            }
+            .thanhtoan-prods {
+                margin-top: 20px;
+            }
+        }
+    }
+}
+
+/*tablet*/
+@media only screen and (min-width: 46.25em) and (max-width: 63.9375em) {
+    .thanhtoan-wrapper {
+        width: 100%;
+        overflow: hidden;
         margin: 100px auto 0;
         height: 100vh;
         padding: 0 15px;

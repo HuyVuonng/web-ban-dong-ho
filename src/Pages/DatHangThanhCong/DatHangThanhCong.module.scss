@@ -5,7 +5,6 @@
     margin: auto;
     img {
         width: 100%;
-
         object-fit: cover;
     }
     a {
@@ -15,5 +14,26 @@
         color: white;
         background-color: #c89979;
         display: inline-block;
+    }
+}
+// responsive
+// mobile
+@media only screen and (max-width: 46.1875em) {
+    .wrapper {
+        width: 100%;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+}
+/*tablet*/
+@media only screen and (min-width: 46.25em) and (max-width: 63.9375em) {
+    .wrapper {
+        width: 100%;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
     }
 }

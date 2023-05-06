@@ -27,6 +27,7 @@ function Home() {
     };
     useEffect(() => {
         if (load.current) {
+            window.scrollTo(0, 0);
             fetchdata();
             load.current = false;
             document.title = 'Trang chủ';

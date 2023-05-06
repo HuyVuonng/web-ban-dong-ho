@@ -34,6 +34,7 @@ function ProductDetail() {
         setLoadding(false);
     };
     useEffect(() => {
+        window.scrollTo(0, 0);
         getProductDetail();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [productID]);

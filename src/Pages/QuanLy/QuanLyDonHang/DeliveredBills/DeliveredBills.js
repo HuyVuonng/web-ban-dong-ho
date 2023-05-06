@@ -37,6 +37,7 @@ function DeliveredBills() {
     };
     useEffect(() => {
         if (isFirst.current) {
+            window.scrollTo(0, 0);
             getdata();
             isFirst.current = false;
         }

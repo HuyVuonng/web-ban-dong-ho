@@ -3,6 +3,10 @@ import { CKEditor } from '@ckeditor/ckeditor5-react';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import httpRequest from '~/utils/httprequest';
+import classNames from 'classnames/bind';
+import styles from './ProductCreateUpdate.module.scss';
+const cx = classNames.bind(styles);
+
 function ProductCreateUpdate() {
     let productID = useParams();
     const [title, setTitle] = useState('Thêm sản phẩm');
@@ -20,6 +24,7 @@ function ProductCreateUpdate() {
                 .then((res) => setProduct(res.data));
 
             setTitle('Sửa sản phẩm');
+            document.querySelector(`.${cx('wraper-form')}`).classList.add(`${cx('form-wrapper-responsive')}`);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
@@ -66,7 +71,7 @@ function ProductCreateUpdate() {
     };
 
     return (
-        <div>
+        <div className={cx('wraper-form')}>
             <h1>{title}</h1>
             {(() => {
                 if (product.GioiTinh) {

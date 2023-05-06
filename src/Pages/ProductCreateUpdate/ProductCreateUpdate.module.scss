@@ -1,0 +1,15 @@
+// responsive
+@media only screen and (max-width: 46.1875em) {
+    .form-wrapper-responsive {
+        width: 100%;
+        margin-top: 100px;
+        padding: 0 20px;
+    }
+}
+/*tablet*/
+@media only screen and (min-width: 46.25em) and (max-width: 63.9375em) {
+    .form-wrapper-responsive {
+        width: 100%;
+        margin-top: 100px;
+    }
+}

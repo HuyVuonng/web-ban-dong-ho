@@ -1,7 +1,7 @@
 import classNames from 'classnames/bind';
 import styles from './ProductItem.module.scss';
 import { Link } from 'react-router-dom';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import httpRequest from '~/utils/httprequest';
 
@@ -54,7 +54,6 @@ function ProductItem({ data }) {
 
     return (
         <div className={cx('ProductItem-wrapper')}>
-            <ToastContainer pauseOnHover={false} theme="dark" autoClose={1000} />
             <div className={cx('body')}>
                 <Link className={cx('product-link')} to={`/productDetails/${data._id}`}>
                     <img className={cx('body-img')} src={data.img} alt="" />

@@ -32,3 +32,12 @@
 .news:hover .news-img {
     transform: scale(1.25);
 }
+
+// responsive
+@media only screen and (max-width: 46.1875em) {
+    .news {
+        margin-top: 10px;
+        cursor: pointer;
+        margin-bottom: 35px;
+    }
+}

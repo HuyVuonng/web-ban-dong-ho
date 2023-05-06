@@ -2,7 +2,12 @@
     height: 170px;
     background-color: var(--primary-color);
 }
-
+.header-mobile {
+    display: none;
+}
+.modal-mobile {
+    display: none;
+}
 .wrapper-header {
     // display: flex;
     width: 1200px;
@@ -194,4 +199,217 @@
 } */
 .label2-cach {
     margin: 0 38px;
+}
+
+// Responsive
+/*tablet&mobile*/
+@media only screen and (max-width: 63.9375em) {
+    .main {
+        overflow: hidden;
+    }
+    .copyright {
+        color: white;
+        font-size: 1.4rem;
+        position: relative;
+        /* bottom: -65px; */
+        /* left: 50%; */
+        /* transform: translateX(-50%); */
+    }
+    .header {
+        display: none;
+    }
+
+    .header-mobile {
+        height: 70px;
+        background-color: var(--primary-color);
+        text-align: center;
+        display: block;
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 0;
+        z-index: 2;
+    }
+    .header-mobi-nav {
+        height: 100%;
+        display: flex;
+        justify-content: space-between;
+        /* margin: auto; */
+        align-items: center;
+    }
+    // .header-mobi-menu-item {
+    // }
+    .nav2-list-mobile {
+        margin-top: 0;
+    }
+    .header-mobi-menu-icon {
+        font-size: 3rem;
+        padding: 12px;
+        color: white;
+    }
+    /* .nave2-mobile{
+        position: relative;
+        width: 100%;
+        height: 100%;
+        background-color: white;
+        
+    } */
+    .nav2-list-mobile {
+        list-style: none;
+    }
+    .nav2-list-item-mobile a {
+        text-decoration: none;
+        color: white;
+        font-size: 2rem;
+        padding: 30px;
+        display: block;
+    }
+    .mobi-logo {
+        width: 170px;
+        height: 54px;
+    }
+    // .header-logo-link {
+    // }
+    .mobi-logo-img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+    // .cart {
+    // }
+    // .cart-item {
+    // }
+    .cart-icon {
+        color: white;
+        font-size: 3rem;
+        padding: 12px;
+    }
+
+    .cart-info {
+        max-height: 90px;
+        top: 75%;
+        right: 2%;
+        text-align: center;
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    }
+
+    .cart-info::before {
+        content: '';
+        bottom: 94%;
+        right: 3.2%;
+        position: absolute;
+        border-width: 15px;
+        border-style: solid;
+        border-color: transparent transparent white transparent;
+    }
+
+    .modal-mobile {
+        position: fixed;
+        z-index: 99;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        display: none;
+        animation: fadeIn linear 0.1s;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    .modal-overlay {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.4);
+    }
+
+    @keyframes goOn {
+        from {
+            opacity: 0;
+            transform: translateX(-100%);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+    .open {
+        display: block;
+    }
+    .close-icon {
+        color: white;
+        font-size: 3rem;
+        padding: 20px;
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+    .close-icon:hover {
+        background-color: white;
+        color: black;
+    }
+}
+
+/*mobile*/
+@media only screen and (max-width: 46.1875em) {
+    .row {
+        display: flex;
+        margin-left: 8px;
+        margin-right: 8px;
+    }
+
+    .cart-title {
+        font-size: 1.4rem;
+        color: var(--text-color);
+    }
+
+    .dk-info {
+        flex-direction: column;
+    }
+    .dk-input1 {
+        width: 233px;
+    }
+
+    .label2-cach {
+        margin: 0;
+    }
+
+    .row-banchay {
+        margin-bottom: 20px;
+    }
+    .spbc:last-child {
+        margin-bottom: 100px;
+    }
+    .news {
+        margin-top: 0;
+        margin-bottom: 90px;
+    }
+    .modal-body {
+        background-color: black;
+        width: 100%;
+        height: 100%;
+        top: 70px;
+        z-index: 1;
+        position: absolute;
+        animation: goOn ease 0.3s;
+    }
+}
+
+/*tablet*/
+@media only screen and (min-width: 46.25em) and (max-width: 63.9375em) {
+    .modal-body {
+        background-color: black;
+        width: 50%;
+        height: 100%;
+        top: 70px;
+        position: relative;
+        animation: goOn ease 0.3s;
+    }
 }

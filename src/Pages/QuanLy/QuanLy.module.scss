@@ -24,3 +24,14 @@
         }
     }
 }
+
+@media only screen and (max-width: 46.1875em) {
+    .wrapper-homepage {
+        width: 100%;
+        margin-top: 70px;
+        padding: 0 20px;
+    }
+    .lable-products {
+        display: flex;
+    }
+}

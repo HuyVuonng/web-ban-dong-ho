@@ -121,3 +121,11 @@
         padding: 10px;
     }
 }
+// responsive
+// mobile
+@media only screen and (max-width: 46.1875em) {
+    .BillItem-time,
+    .BillItem-tp {
+        display: none !important;
+    }
+}

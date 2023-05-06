@@ -76,3 +76,26 @@
     margin: auto;
     transform: translateY(406%);
 }
+
+// responsive
+@media only screen and (max-width: 46.1875em) {
+    .wrapper-footer {
+        width: 100%;
+    }
+    .footer {
+        padding: 0 10px;
+    }
+
+    .row1 {
+        flex-wrap: wrap;
+        padding-bottom: 30px;
+
+        .col:nth-child(1) {
+            width: 100%;
+            padding: 20px 0;
+        }
+    }
+    .copyright {
+        transform: translateY(0%);
+    }
+}

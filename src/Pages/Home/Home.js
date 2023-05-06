@@ -9,6 +9,7 @@ import Loadding from '~/Components/Loadding';
 import Slider from 'react-slick';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons';
+import { ToastContainer } from 'react-toastify';
 
 const cx = classNames.bind(styles);
 function Home() {
@@ -36,7 +37,7 @@ function Home() {
         dots: true,
         infinite: true,
         arrows: true,
-        speed: 2000,
+        speed: 5000,
         slidesToShow: 4,
         slidesToScroll: 4,
         autoplay: true,
@@ -50,7 +51,46 @@ function Home() {
                 <FontAwesomeIcon icon={faAngleRight} className="slick-next-btn-icon" />
             </button>
         ),
+        responsive: [
+            {
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 3,
+                    infinite: true,
+                    dots: true,
+                    arrows: true,
+                    speed: 5000,
+                    autoplay: true,
+                },
+            },
+            {
+                breakpoint: 600,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 2,
+                    infinite: true,
+                    dots: true,
+                    arrows: true,
+                    speed: 5000,
+                    autoplay: true,
+                },
+            },
+            {
+                breakpoint: 480,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                    infinite: true,
+                    dots: true,
+                    arrows: true,
+                    speed: 5000,
+                    autoplay: true,
+                },
+            },
+        ],
     };
+
     const changeLableproc = (e) => {
         const lable = document.querySelectorAll(`.${cx('lable')}`);
         for (let i = 0; i < lable.length; i++) {
@@ -65,6 +105,8 @@ function Home() {
         return (
             <div className={cx('wrapper-homepage')}>
                 <div className={cx('content')}>
+                    <ToastContainer pauseOnHover={false} theme="dark" autoClose={1000} />
+
                     <div className={cx('best-seller')}>
                         <h2 className={cx('lable')}>Sản phẩm bán chạy</h2>
                         <div className={cx('best-seller-product')}>
@@ -81,9 +123,9 @@ function Home() {
                             <h2 className={cx('lable', 'active')} onClick={changeLableproc}>
                                 Sản phẩm mới
                             </h2>
-                            <h2 className={cx('lable')} onClick={changeLableproc}>
+                            {/* <h2 className={cx('lable')} onClick={changeLableproc}>
                                 Sản phẩm khuyến mại
-                            </h2>
+                            </h2> */}
                         </div>
                         <div className={cx('products')}>
                             {newProduct.map((product, index) => (

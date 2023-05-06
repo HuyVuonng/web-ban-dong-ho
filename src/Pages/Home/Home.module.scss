@@ -107,3 +107,53 @@
     cursor: pointer;
     filter: brightness(0.9);
 }
+
+// responsive
+/*mobile*/
+@media only screen and (max-width: 46.1875em) {
+    .product2 {
+        margin-top: 50px;
+        .lable-products {
+            .lable {
+                &:hover {
+                    color: #c89979;
+                    cursor: pointer;
+                }
+
+                &.active {
+                    color: #c89979;
+                    font-size: 3rem;
+                    user-select: none;
+                }
+            }
+        }
+
+        .products {
+            grid-template-columns: repeat(1, 1fr);
+        }
+    }
+
+    .wrapper-homepage {
+        width: 100%;
+        padding: 0 10px;
+    }
+    .content {
+        margin-top: 100px;
+    }
+
+    .news {
+        grid-template-columns: 1fr;
+        column-gap: 2px;
+    }
+
+    .dk-info {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 55px;
+    }
+    .dk-input1 {
+        width: 65vw;
+    }
+}

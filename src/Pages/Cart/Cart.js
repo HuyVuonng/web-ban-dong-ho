@@ -43,7 +43,6 @@ function Cart() {
     const tinhtongtien = () => {
         setTimeout(() => {
             let total = document.querySelectorAll(`.${cx('Item-total-price')}`);
-            console.log(total);
             let tong = 0;
             for (let i = 0; i < total.length; i++) {
                 let a = total[i].innerText.split('₫');
@@ -85,7 +84,7 @@ function Cart() {
                                 <th>Giá</th>
                                 <th>Số lượng</th>
                                 <th>Tổng tiền</th>
-                                <th></th>
+                                <th>Xóa</th>
                             </tr>
                         </thead>
 
@@ -119,6 +118,7 @@ function Cart() {
                                 <tr>
                                     <td colSpan={6} className="text-center">
                                         <img
+                                            style={{ width: '100%' }}
                                             src="https://i.pinimg.com/736x/2e/ac/fa/2eacfa305d7715bdcd86bb4956209038--android.jpg"
                                             alt="cart-emty-img"
                                         />

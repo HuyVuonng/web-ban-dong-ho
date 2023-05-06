@@ -66,7 +66,7 @@ function ProductCreateUpdate() {
     };
 
     return (
-        <div style={{ width: 1200, margin: 'auto' }}>
+        <div>
             <h1>{title}</h1>
             {(() => {
                 if (product.GioiTinh) {

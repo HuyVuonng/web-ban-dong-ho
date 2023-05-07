@@ -1,5 +1,6 @@
 import classNames from 'classnames/bind';
 import styles from './Header.module.scss';
+import logo from './logo-mona-2.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faHeart, faLocationDot, faPhone, faShoppingCart, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { faFacebook, faInstagram } from '@fortawesome/free-brands-svg-icons';
@@ -78,11 +79,7 @@ function Header() {
                     <div className={cx('header-with-search')}>
                         <div className={cx('header-logo')}>
                             <Link to="/" className={cx('header-logo-link')}>
-                                <img
-                                    src="https://web-ban-dong-ho-be.onrender.com/img/logo-mona-2.png"
-                                    alt=""
-                                    className={cx('header-logo-img')}
-                                />
+                                <img src={logo} alt="" className={cx('header-logo-img')} />
                             </Link>
                         </div>
 

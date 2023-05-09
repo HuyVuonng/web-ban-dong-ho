@@ -1,6 +1,6 @@
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import httpRequest from '~/utils/httprequest';
 import classNames from 'classnames/bind';
@@ -12,6 +12,7 @@ function ProductCreateUpdate() {
     const [title, setTitle] = useState('Thêm sản phẩm');
     const [prevIMG, setPrevIMG] = useState();
     const [product, setProduct] = useState({});
+    const refForm = useRef();
     useEffect(() => {
         if (productID.id) {
             window.scrollTo(0, 0);
@@ -25,7 +26,7 @@ function ProductCreateUpdate() {
 
             setTitle('Sửa sản phẩm');
             setTimeout(() => {
-                document.querySelector(`.${cx('wraper-form')}`).classList.add(`${cx('form-wrapper-responsive')}`);
+                refForm.current.classList.add(`${cx('form-wrapper-responsive')}`);
             }, 1000);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -73,7 +74,7 @@ function ProductCreateUpdate() {
     };
 
     return (
-        <div className={cx('wraper-form')}>
+        <div ref={refForm} className={cx('wraper-form')}>
             <h1>{title}</h1>
             {(() => {
                 if (product.GioiTinh) {

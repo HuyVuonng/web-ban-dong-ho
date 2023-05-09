@@ -9,12 +9,13 @@ import PhanLoai from '~/Pages/PhanLoai';
 import ThungRac from '~/Pages/QuanLy/ThungRac';
 import ThanhToan from '~/Pages/ThanhToan';
 import DatHangThanhCong from '~/Pages/DatHangThanhCong';
+import PageNotFound from '~/Pages/404NotFound';
 
 const publicRoutes = [
     { path: config.routes.home, component: Home },
     { path: config.routes.phanloai, component: PhanLoai },
     { path: config.routes.cart, component: Cart },
-    { path: config.routes.quanLy, component: QuanLy },
+    { path: config.routes.PageNotFound, component: PageNotFound },
     { path: config.routes.productDetails, component: ProductDetail },
     { path: config.routes.productEdit, component: ProductCreateUpdate },
     { path: config.routes.thungrac, component: ThungRac },
@@ -22,6 +23,6 @@ const publicRoutes = [
     { path: config.routes.thanhtoan, component: ThanhToan },
 ];
 
-const privateRoutes = [];
+const privateRoutes = [{ path: config.routes.quanLy, component: QuanLy }];
 
 export { publicRoutes, privateRoutes };

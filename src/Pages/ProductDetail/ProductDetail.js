@@ -5,7 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { useRef, useState, useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import httpRequest from '~/utils/httprequest';
 
 const cx = classNames.bind(styles);
@@ -18,20 +18,25 @@ function ProductDetail() {
     const [product, setProduct] = useState([]);
     const [loadding, setLoadding] = useState(true);
     // let load = useRef(true);
+    const navigate = useNavigate();
 
     const getProductDetail = async () => {
-        await httpRequest
-            .get('products', {
-                params: {
-                    id: productID.ID,
-                },
-            })
-            .then((response) => {
-                document.title = response.data.name;
-                setProduct(response.data);
-            });
+        try {
+            await httpRequest
+                .get('products', {
+                    params: {
+                        id: productID.ID,
+                    },
+                })
+                .then((response) => {
+                    document.title = response.data.name;
+                    setProduct(response.data);
+                });
 
-        setLoadding(false);
+            setLoadding(false);
+        } catch (error) {
+            navigate('/pagenotfound');
+        }
     };
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -48,12 +53,14 @@ function ProductDetail() {
     };
     useEffect(() => {
         const idtimeout = setTimeout(() => {
-            if (input.current.value === '' || input.current.value < 1) {
-                setQuantity(1);
-                return;
-            } else if (input.current.value > +product.SoLuong) {
-                setQuantity(+product.SoLuong);
-                return;
+            if (input.current) {
+                if (input.current.value === '' || input.current.value < 1) {
+                    setQuantity(1);
+                    return;
+                } else if (input.current.value > +product.SoLuong) {
+                    setQuantity(+product.SoLuong);
+                    return;
+                }
             }
         }, 800);
         return () => clearTimeout(idtimeout);

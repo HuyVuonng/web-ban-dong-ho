@@ -11,13 +11,21 @@ function ThanhToan() {
     let loadFirst = useRef(true);
     const [loading, setLoading] = useState(false);
     const [tongtien, setTongTien] = useState(0);
+    const [productBuy, setProductBuy] = useState([]);
 
     const prodInlocalStrorage = localStorage.getItem('idItems') ? JSON.parse(localStorage.getItem('idItems')) : [];
     const getData = async (id, sl) => {
         setProdctIncart([]);
         await httpRequest.get('/products', { params: { id: id } }).then((response) => {
             response.data.slmua = sl;
+            let data = {
+                id_prod: id,
+                sl: sl,
+                price: response.data.price,
+            };
+            console.log(data);
             setProdctIncart((pre) => [...pre, response.data]);
+            setProductBuy((pre) => [...pre, data]);
         });
     };
 
@@ -68,7 +76,7 @@ function ThanhToan() {
         const email = document.querySelector(`#${cx('email')}`).value;
         const thanhPho = document.querySelector(`#${cx('thanhpho')}`).value;
         const diaChi = document.querySelector(`#${cx('diachi')}`).value;
-        const prodBuy = JSON.parse(localStorage.getItem('idItems'));
+        const prodBuy = productBuy;
         const tongTien = document.querySelector(`.${cx('thanhtoan-prods-tongtien-toanhoadon')}`).innerText;
         if (
             hoTen.trim() &&
@@ -88,6 +96,7 @@ function ThanhToan() {
                 prodBuy,
                 tongTien,
             };
+
             httpRequest.post('/bills/create', bill);
 
             for (let i = 0; i < prodBuy.length; i++) {

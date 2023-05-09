@@ -107,16 +107,16 @@ function Header() {
                     <nav className={cx('nav2')}>
                         <ul className={cx('nav2-list')}>
                             <li className={cx('nav2-list-item')}>
-                                <Link to="/#">TRANG CHỦ</Link>
+                                <Link to="/">TRANG CHỦ</Link>
                             </li>
                             <li className={cx('nav2-list-item')}>
                                 <Link to="/">GIỚI THIỆU</Link>
                             </li>
                             <li className={cx('nav2-list-item')}>
-                                <Link to="/donghonam?page=1">ĐỒNG HỒ NAM</Link>
+                                <Link to="/phanloai/donghonam?page=1">ĐỒNG HỒ NAM</Link>
                             </li>
                             <li className={cx('nav2-list-item')}>
-                                <Link to="/donghonu?page=1">ĐỒNG HỒ NỮ</Link>
+                                <Link to="/phanloai/donghonu?page=1">ĐỒNG HỒ NỮ</Link>
                             </li>
                             <li className={cx('nav2-list-item')}>
                                 <Link to="/">BLOGS</Link>

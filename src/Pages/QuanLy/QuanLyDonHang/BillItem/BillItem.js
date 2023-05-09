@@ -23,6 +23,7 @@ function BillItem({ data, callback, setdata, calldata, datachange, lablebtn, don
             setProduct([]);
             await httpRequest.get('/products', { params: { id: element.id_prod } }).then((response) => {
                 response.data.slmua = element.sl;
+                response.data.price = element.price;
                 setProduct((pre) => [...pre, response.data]);
             });
         });
@@ -58,8 +59,11 @@ function BillItem({ data, callback, setdata, calldata, datachange, lablebtn, don
         }
         await httpRequest.delete(`bills/deleteBill/${id}`);
         let newList = [];
-        await httpRequest.get(`${calldata}?page=${pageLoad}`).then((response) => (newList = response.data));
-        callback(newList);
+        await httpRequest
+            .get(`${calldata}?page=${pageLoad}`)
+            .then((response) => (newList = response.data))
+            .then(() => callback(newList));
+        getProductInfo();
         change.current = !change.current;
     };
     const showBill = (e) => {

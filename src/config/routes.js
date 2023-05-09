@@ -7,7 +7,8 @@ const routes = {
     productEdit: '/product/:id/edit',
     thanhtoan: '/thanhtoan',
     dathangthanhcong: '/dathangthanhcong',
-    phanloai: '/:gt',
+    phanloai: '/phanloai/:gt',
+    PageNotFound: '/*',
 };
 
 export default routes;

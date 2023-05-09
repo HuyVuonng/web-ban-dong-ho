@@ -28,7 +28,7 @@ function NewBill() {
     };
     const callbackFunction = (childData) => {
         isFirst.current = true;
-        setNewBillPage(childData);
+        setNewBillPage([]);
     };
 
     useEffect(() => {

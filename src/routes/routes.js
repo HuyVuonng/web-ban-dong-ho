@@ -15,12 +15,12 @@ const publicRoutes = [
     { path: config.routes.home, component: Home },
     { path: config.routes.phanloai, component: PhanLoai },
     { path: config.routes.cart, component: Cart },
-    { path: config.routes.PageNotFound, component: PageNotFound },
     { path: config.routes.productDetails, component: ProductDetail },
     { path: config.routes.productEdit, component: ProductCreateUpdate },
     { path: config.routes.thungrac, component: ThungRac },
     { path: config.routes.dathangthanhcong, component: DatHangThanhCong },
     { path: config.routes.thanhtoan, component: ThanhToan },
+    { path: config.routes.PageNotFound, component: PageNotFound },
 ];
 
 const privateRoutes = [{ path: config.routes.quanLy, component: QuanLy }];

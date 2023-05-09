@@ -24,7 +24,9 @@ function ProductCreateUpdate() {
                 .then((res) => setProduct(res.data));
 
             setTitle('Sửa sản phẩm');
-            document.querySelector(`.${cx('wraper-form')}`).classList.add(`${cx('form-wrapper-responsive')}`);
+            setTimeout(() => {
+                document.querySelector(`.${cx('wraper-form')}`).classList.add(`${cx('form-wrapper-responsive')}`);
+            }, 500);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);

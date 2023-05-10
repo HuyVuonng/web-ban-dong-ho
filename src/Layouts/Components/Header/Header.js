@@ -163,10 +163,10 @@ function Header() {
                             <Link to="/">GIỚI THIỆU</Link>
                         </li>
                         <li className={cx('nav2-list-item-mobile')} onClick={close}>
-                            <Link to="/donghonam?page=1">ĐỒNG HỒ NAM</Link>
+                            <Link to="/phanloai/donghonam?page=1">ĐỒNG HỒ NAM</Link>
                         </li>
                         <li className={cx('nav2-list-item-mobile')} onClick={close}>
-                            <Link to="/donghonu?page=1">ĐỒNG HỒ NỮ</Link>
+                            <Link to="/phanloai/donghonu?page=1">ĐỒNG HỒ NỮ</Link>
                         </li>
                         <li className={cx('nav2-list-item-mobile')} onClick={close}>
                             <Link to="/">BLOGS</Link>

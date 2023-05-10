@@ -1,6 +1,6 @@
 import classNames from 'classnames/bind';
 import styles from './PhanLoai.module.scss';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import ReactPaginate from 'react-paginate';
 import httpRequest from '~/utils/httprequest';
@@ -18,6 +18,7 @@ function PhanLoai() {
     const gt = params.gt === 'donghonam' ? 'nam' : 'nu';
     const soLuongItemTrenTrang = 10;
     let currentPage = searchParams.get('page');
+    const title = useRef('Đồng hồ nam');
 
     const getProducts = async () => {
         await httpRequest.get(`/products/gioitinh/${gt}`).then((response) => setALLProducts(response.data));
@@ -28,6 +29,15 @@ function PhanLoai() {
     };
     useEffect(() => {
         params.gt === 'donghonam' ? (document.title = 'Đồng hồ nam') : (document.title = 'Đồng hồ nữ');
+        if (params.gt === 'donghonam') {
+            document.title = 'Đồng hồ nam';
+            title.current = 'Đồng hồ nam';
+        } else if (params.gt === 'donghonu') {
+            document.title = 'Đồng hồ nữ';
+            title.current = 'Đồng hồ nữ';
+        } else {
+            window.location.replace('/pagenotfound');
+        }
         window.scrollTo(0, 0);
         getProducts();
 
@@ -44,6 +54,7 @@ function PhanLoai() {
     } else {
         return (
             <div className={cx('wrapper')}>
+                <h1 className={cx('title')}>{title.current}</h1>
                 <div className={cx('content')}>
                     {ProductInPagee.map((product) => (
                         <ProductItem key={product._id} data={product} />

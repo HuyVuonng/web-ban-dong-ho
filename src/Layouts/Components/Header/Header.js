@@ -79,7 +79,7 @@ function Header() {
                     <div className={cx('header-with-search')}>
                         <div className={cx('header-logo')}>
                             <Link to="/" className={cx('header-logo-link')}>
-                                <img src={logo} alt="" className={cx('header-logo-img')} />
+                                <img src={logo} alt="logo" className={cx('header-logo-img')} />
                             </Link>
                         </div>
 
@@ -138,11 +138,7 @@ function Header() {
                     </div>
                     <div className={cx('mobi-logo')}>
                         <Link to="/" className={cx('header-logo-link')}>
-                            <img
-                                src="https://web-ban-dong-ho-be.onrender.com/img/logo-mona-2.png"
-                                alt=""
-                                className={cx('mobi-logo-img')}
-                            />
+                            <img src={logo} alt="logo" className={cx('mobi-logo-img')} />
                         </Link>
                     </div>
                     <div className={cx('cart')}>

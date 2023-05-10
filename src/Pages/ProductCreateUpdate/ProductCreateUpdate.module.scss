@@ -10,11 +10,17 @@
         margin-top: 100px;
         padding: 0 20px;
     }
+    .wraper-form {
+        width: 100%;
+    }
 }
 /*tablet*/
 @media only screen and (min-width: 46.25em) and (max-width: 63.9375em) {
     .form-wrapper-responsive {
         width: 100%;
         margin-top: 100px;
+    }
+    .wraper-form {
+        width: 100%;
     }
 }

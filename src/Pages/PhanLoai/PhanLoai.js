@@ -7,6 +7,7 @@ import httpRequest from '~/utils/httprequest';
 import ProductItem from '~/Components/ProductItem/ProductItem';
 import { useSearchParams } from 'react-router-dom';
 import Loadding from '~/Components/Loadding/Loadding';
+import { ToastContainer } from 'react-toastify';
 const cx = classNames.bind(styles);
 
 function PhanLoai() {
@@ -19,7 +20,7 @@ function PhanLoai() {
     const soLuongItemTrenTrang = 10;
     let currentPage = searchParams.get('page');
     const title = useRef('Đồng hồ nam');
-
+    console.log(searchParams);
     const getProducts = async () => {
         await httpRequest.get(`/products/gioitinh/${gt}`).then((response) => setALLProducts(response.data));
         await httpRequest
@@ -55,6 +56,8 @@ function PhanLoai() {
         return (
             <div className={cx('wrapper')}>
                 <h1 className={cx('title')}>{title.current}</h1>
+                <ToastContainer pauseOnHover={false} theme="dark" autoClose={1000} />
+
                 <div className={cx('content')}>
                     {ProductInPagee.map((product) => (
                         <ProductItem key={product._id} data={product} />
@@ -68,11 +71,11 @@ function PhanLoai() {
                     marginPagesDisplayed={1}
                     forcePage={+currentPage - 1}
                     breakLabel="..."
-                    nextLabel=">"
+                    nextLabel={currentPage < ALLproducts.length / soLuongItemTrenTrang && '>'}
                     onPageChange={handlePageClick}
                     pageCount={ALLproducts.length / soLuongItemTrenTrang}
                     pageRangeDisplayed={2}
-                    previousLabel="<"
+                    previousLabel={currentPage > 1 && '<'}
                     renderOnZeroPageCount={null}
                 />
             </div>

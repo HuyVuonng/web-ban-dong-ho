@@ -97,20 +97,23 @@ function ThanhToan() {
                 tongTien,
             };
 
-            httpRequest.post('/bills/create', bill);
-
             for (let i = 0; i < prodBuy.length; i++) {
                 let productOld;
                 await httpRequest
                     .get('/products', { params: { id: prodBuy[i].id_prod } })
                     .then((response) => (productOld = response.data));
                 let soluonMoi = +productOld.SoLuong - prodBuy[i].sl;
+                if (soluonMoi < 0) {
+                    alert(`Số lượng sản phẩm ${prodBuy[i].name} mua nhiều hơn số lượng đang có`);
+                    return;
+                }
                 let daBan = +productOld.daBan + prodBuy[i].sl;
                 httpRequest.patch(`/products/updateQuantity/${prodBuy[i].id_prod}`, {
                     SoLuong: soluonMoi,
                     daBan: daBan,
                 });
             }
+            httpRequest.post('/bills/create', bill);
             setLoading(true);
             setTimeout(() => {
                 localStorage.removeItem('idItems');

@@ -1,13 +1,21 @@
 import { BrowserRouter as Router, Routes, Route, Outlet, Navigate } from 'react-router-dom';
 import { publicRoutes, privateRoutes } from './routes';
 import DefaultLayout from './Layouts/DefaultLayout';
-import { Fragment } from 'react';
+import { Fragment, useEffect, useRef } from 'react';
 
 function App() {
+    let load = useRef(true);
+
     const PrivateRoutes = () => {
         let auth = { token: true };
         return auth.token ? <Outlet /> : <Navigate to="/" />;
     };
+    useEffect(() => {
+        if (load.current) {
+            alert('Do server backend phải khởi động nên lần đầu load sẽ hơi lâu');
+            load.current = false;
+        }
+    }, []);
 
     return (
         <Router>

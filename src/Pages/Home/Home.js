@@ -17,6 +17,7 @@ function Home() {
     const [loadding, setloading] = useState(true);
     const [bestseller, setBestseller] = useState([]);
     const [newProduct, setNewProduct] = useState([]);
+    const idTimeout = useRef();
 
     const fetchdata = async () => {
         const res = await httpRequest.get('products/bestseller');
@@ -24,13 +25,18 @@ function Home() {
         setNewProduct(newproducts.data);
         setBestseller(res.data);
         setloading(false);
+        clearTimeout(idTimeout.current);
     };
     useEffect(() => {
         if (load.current) {
             window.scrollTo(0, 0);
             fetchdata();
-            load.current = false;
             document.title = 'Trang chủ';
+            load.current = false;
+            //Sau 2p nếu chưa fetch data xong sẽ load lại trang web
+            idTimeout.current = setTimeout(() => {
+                window.location.reload();
+            }, 120000);
         }
     }, []);
 

@@ -39,7 +39,7 @@ function BillItem({ data, callback, setdata, calldata, datachange, lablebtn, don
         }
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [change.current]);
+    }, [data]);
 
     const deleteBill = async (e) => {
         const id = e.target.dataset.bill;

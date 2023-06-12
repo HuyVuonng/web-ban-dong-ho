@@ -3,6 +3,7 @@ import styles from './ThanhToan.module.scss';
 import { useEffect, useRef, useState } from 'react';
 import httpRequest from '~/utils/httprequest';
 import Loadding from '~/Components/Loadding/Loadding';
+import { useNavigate } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
@@ -12,6 +13,7 @@ function ThanhToan() {
     const [loading, setLoading] = useState(false);
     const [tongtien, setTongTien] = useState(0);
     const [productBuy, setProductBuy] = useState([]);
+    const navigate = useNavigate();
 
     const prodInlocalStrorage = localStorage.getItem('idItems') ? JSON.parse(localStorage.getItem('idItems')) : [];
     const getData = async (id, sl) => {
@@ -104,7 +106,7 @@ function ThanhToan() {
                     .then((response) => (productOld = response.data));
                 let soluonMoi = +productOld.SoLuong - prodBuy[i].sl;
                 if (soluonMoi < 0) {
-                    alert(`Số lượng sản phẩm ${prodBuy[i].name} mua nhiều hơn số lượng đang có`);
+                    alert(`Số lượng sản phẩm mua nhiều hơn số lượng đang có`);
                     return;
                 }
                 let daBan = +productOld.daBan + prodBuy[i].sl;
@@ -117,8 +119,19 @@ function ThanhToan() {
             setLoading(true);
             setTimeout(() => {
                 localStorage.removeItem('idItems');
-                window.location.assign('/dathangthanhcong');
+                navigate('/dathangthanhcong');
             }, 500);
+
+            let data;
+
+            // eslint-disable-next-line prefer-const
+            data = {
+                nameCustomer: hoTen,
+                email: email,
+                products: prodctIncart,
+                tongTien: tongtien,
+            };
+            httpRequest.post('/sendMail', { data }).then((response) => console.log(response.data));
         }
     };
     return (

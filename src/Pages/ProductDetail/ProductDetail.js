@@ -151,25 +151,52 @@ function ProductDetail() {
 
                         <div className={cx('product-description')}>{setDescription(product.Decription)}</div>
 
-                        <div className={cx('product-action')}>
-                            <div className={cx('product-action-plus-minus')}>
-                                <span className={cx('product-quantity-title')}>Số lượng</span>
-                                <FontAwesomeIcon icon={faMinus} className={cx('product-icon-minus')} onClick={minus} />
-                                <input
-                                    ref={input}
-                                    type="text"
-                                    className={cx('product-quantity')}
-                                    value={quantity}
-                                    onChange={changeQuantity}
-                                />
-                                <FontAwesomeIcon icon={faPlus} className={cx('product-icon-plus')} onClick={plus} />
+                        {+product.SoLuong > 0 ? (
+                            <div className={cx('product-action')}>
+                                <div className={cx('product-action-plus-minus')}>
+                                    <span className={cx('product-quantity-title')}>Số lượng</span>
+                                    <FontAwesomeIcon
+                                        icon={faMinus}
+                                        className={cx('product-icon-minus')}
+                                        onClick={minus}
+                                    />
+                                    <input
+                                        ref={input}
+                                        type="text"
+                                        className={cx('product-quantity')}
+                                        value={quantity}
+                                        onChange={changeQuantity}
+                                    />
+                                    <FontAwesomeIcon icon={faPlus} className={cx('product-icon-plus')} onClick={plus} />
+                                </div>
+                                <p ref={txtErr} className={cx('product-quantity-err')}></p>
+                                <button className={cx('product-action-buy')} onClick={AddtoCart}>
+                                    Thêm vào giỏ hàng
+                                </button>
+                                <ToastContainer theme="dark" autoClose={1000} />
                             </div>
-                            <p ref={txtErr} className={cx('product-quantity-err')}></p>
-                            <button className={cx('product-action-buy')} onClick={AddtoCart}>
-                                Thêm vào giỏ hàng
-                            </button>
-                            <ToastContainer theme="dark" autoClose={1000} />
-                        </div>
+                        ) : (
+                            <div className={cx('product-action')}>
+                                <div className={cx('product-action-plus-minus')}>
+                                    <span className={cx('product-quantity-title')}>Số lượng</span>
+                                    <FontAwesomeIcon icon={faMinus} className={cx('product-icon-minus')} />
+                                    <input
+                                        disabled
+                                        ref={input}
+                                        type="text"
+                                        className={cx('product-quantity')}
+                                        value={quantity}
+                                        onChange={changeQuantity}
+                                    />
+                                    <FontAwesomeIcon icon={faPlus} className={cx('product-icon-plus')} />
+                                </div>
+                                <p ref={txtErr} className={cx('product-quantity-err')}></p>
+                                <button disabled className={cx('product-action-buy', 'disabled')} onClick={AddtoCart}>
+                                    Hết hàng
+                                </button>
+                                <ToastContainer theme="dark" autoClose={1000} />
+                            </div>
+                        )}
                     </div>
                 </div>
             )}

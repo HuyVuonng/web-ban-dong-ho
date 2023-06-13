@@ -16,15 +16,15 @@ function DeliveredBills() {
     const pageLoad = useRef(1);
     let isFirst = useRef(true);
 
-    const getdata = async () => {
+    const getdata = async (page = 1) => {
         await httpRequest.get('bills/deliveredBills').then((res) => setAllDeliveredBills(res.data));
-        await httpRequest.get('bills/deliveredBills?page=1').then((res) => setDeliveredBillsPage(res.data));
+        await httpRequest.get(`bills/deliveredBills?page=${page}`).then((res) => setDeliveredBillsPage(res.data));
         setLoading(false);
     };
 
     const callbackFunction = (childData) => {
         isFirst.current = true;
-        setDeliveredBillsPage(childData);
+        getdata(childData);
     };
     const handlePageClick = async (event) => {
         let page = event.selected + 1;
@@ -41,7 +41,7 @@ function DeliveredBills() {
             getdata();
             isFirst.current = false;
         }
-    }, [DeliveredBillsPage]);
+    }, []);
 
     if (loading) {
         return <Loadding />;
@@ -51,7 +51,7 @@ function DeliveredBills() {
                 <div className={cx('deliveredBills-content')}>
                     {DeliveredBillsPage.map((bill, index) => (
                         <BillItem
-                            key={index}
+                            key={bill._id}
                             data={bill}
                             callback={callbackFunction}
                             calldata="/bills/deliveredBills"

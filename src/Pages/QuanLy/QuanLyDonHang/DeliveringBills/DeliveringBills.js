@@ -16,9 +16,9 @@ function DeliveringBills() {
 
     let isFirst = useRef(true);
     const [loading, setLoading] = useState(true);
-    const getdata = async () => {
+    const getdata = async (page = 1) => {
         await httpRequest.get('bills/deliveringBills').then((res) => setAllDeliveringBills(res.data));
-        await httpRequest.get('bills/deliveringBills?page=1').then((res) => setDeliveringBillsPage(res.data));
+        await httpRequest.get(`bills/deliveringBills?page=${page}`).then((res) => setDeliveringBillsPage(res.data));
         setLoading(false);
     };
     const handlePageClick = async (event) => {
@@ -33,7 +33,7 @@ function DeliveringBills() {
 
     const callbackFunction = (childData) => {
         isFirst.current = true;
-        setDeliveringBillsPage(childData);
+        getdata(childData);
     };
 
     useEffect(() => {
@@ -42,7 +42,7 @@ function DeliveringBills() {
             getdata();
             isFirst.current = false;
         }
-    }, [DeliveringBillsPage]);
+    }, []);
     if (loading) {
         return <Loadding />;
     } else {
@@ -51,7 +51,7 @@ function DeliveringBills() {
                 <div className={cx('deliveringBills-content')}>
                     {DeliveringBillsPage.map((bill, index) => (
                         <BillItem
-                            key={index}
+                            key={bill._id}
                             data={bill}
                             callback={callbackFunction}
                             pageLoad={pageLoad.current}

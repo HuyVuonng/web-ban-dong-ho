@@ -99,7 +99,9 @@
                     border: none;
                     padding: 10px;
                     user-select: none;
-
+                    &.disabled {
+                        filter: grayscale(50%);
+                    }
                     &:hover {
                         filter: brightness(0.9);
                     }

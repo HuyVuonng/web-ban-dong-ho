@@ -39,7 +39,7 @@ function BillItem({ data, callback, setdata, calldata, datachange, lablebtn, don
         }
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [data]);
+    }, []);
 
     const deleteBill = async (e) => {
         const id = e.target.dataset.bill;
@@ -58,12 +58,15 @@ function BillItem({ data, callback, setdata, calldata, datachange, lablebtn, don
             }
         }
         await httpRequest.delete(`bills/deleteBill/${id}`);
-        let newList = [];
-        await httpRequest
-            .get(`${calldata}?page=${pageLoad}`)
-            .then((response) => (newList = response.data))
-            .then(() => callback(newList));
-        getProductInfo();
+
+        // let newList = [];
+        // await httpRequest
+        //     .get(`${calldata}?page=${pageLoad}`)
+        //     .then((response) => (newList = response.data))
+        //     .then(() => callback(newList));
+        // getProductInfo();
+
+        callback(pageLoad);
         change.current = !change.current;
     };
     const showBill = (e) => {

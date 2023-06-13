@@ -15,9 +15,9 @@ function NewBill() {
     const [loading, setLoading] = useState(true);
     const pageLoad = useRef(1);
     let isFirst = useRef(true);
-    const getdata = async () => {
+    const getdata = async (page = 1) => {
         await httpRequest.get('bills/newBills').then((res) => setAllNewBill(res.data));
-        await httpRequest.get(`bills/newBills?page=1`).then((res) => setNewBillPage(res.data));
+        await httpRequest.get(`bills/newBills?page=${page}`).then((res) => setNewBillPage(res.data));
         setLoading(false);
     };
     const handlePageClick = async (event) => {
@@ -28,7 +28,7 @@ function NewBill() {
     };
     const callbackFunction = (childData) => {
         isFirst.current = true;
-        setNewBillPage([]);
+        getdata(childData);
     };
 
     useEffect(() => {
@@ -37,7 +37,7 @@ function NewBill() {
             getdata();
             isFirst.current = false;
         }
-    }, [NewBillPage]);
+    }, []);
     if (loading) {
         return <Loadding />;
     } else {
@@ -46,7 +46,7 @@ function NewBill() {
                 <div className={cx('newBills-content')}>
                     {NewBillPage.map((bill, index) => (
                         <BillItem
-                            key={index}
+                            key={bill._id}
                             data={bill}
                             pageLoad={pageLoad.current}
                             callback={callbackFunction}

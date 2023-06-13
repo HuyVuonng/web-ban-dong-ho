@@ -65,9 +65,21 @@ function ProductItem({ data }) {
                         </div>
                     </div>
                 </Link>
-                <button className={cx('body-btn')} data-id={data._id} onClick={(e) => AddtoCart(e)}>
-                    <span className={cx('btn-name')}>Thêm vào giỏ hàng</span>
-                </button>
+
+                {data.SoLuong > 0 ? (
+                    <button className={cx('body-btn')} data-id={data._id} onClick={(e) => AddtoCart(e)}>
+                        <span className={cx('btn-name')}>Thêm vào giỏ hàng</span>
+                    </button>
+                ) : (
+                    <button
+                        disabled
+                        className={cx('body-btn', 'disabled')}
+                        data-id={data._id}
+                        onClick={(e) => AddtoCart(e)}
+                    >
+                        <span className={cx('btn-name')}>Hết hàng</span>
+                    </button>
+                )}
             </div>
         </div>
     );

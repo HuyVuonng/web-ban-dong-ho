@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import httpRequest from '~/utils/httprequest';
 import Loadding from '~/Components/Loadding/Loadding';
 import { useNavigate } from 'react-router-dom';
+import moment from 'moment/moment';
 
 const cx = classNames.bind(styles);
 
@@ -12,6 +13,7 @@ function ThanhToan() {
     let loadFirst = useRef(true);
     const [loading, setLoading] = useState(false);
     const [tongtien, setTongTien] = useState(0);
+    const [tongtienDefault, setTongTienDefault] = useState(0);
     const [productBuy, setProductBuy] = useState([]);
     const navigate = useNavigate();
 
@@ -48,6 +50,7 @@ function ThanhToan() {
                 tongtien += tien;
             }
             setTongTien(priceConver(tongtien));
+            setTongTienDefault(tongtien);
         }, 1000);
     };
 
@@ -115,23 +118,35 @@ function ThanhToan() {
                     daBan: daBan,
                 });
             }
-            httpRequest.post('/bills/create', bill);
-            setLoading(true);
-            setTimeout(() => {
-                localStorage.removeItem('idItems');
-                navigate('/dathangthanhcong');
-            }, 500);
-
-            let data;
-
-            // eslint-disable-next-line prefer-const
-            data = {
-                nameCustomer: hoTen,
-                email: email,
-                products: prodctIncart,
-                tongTien: tongtien,
+            const bodyPayment = {
+                amount: tongtienDefault,
+                orderDescription: 'Thanh toan don hang tai Mona',
+                orderType: 'other',
             };
-            httpRequest.post('/sendMail', { data }).then((response) => console.log(response.data));
+            httpRequest.post('/create_payment_url', bodyPayment);
+            // console.log(moment().format('yyyyMMDDHHmmss'));
+            // console.log(
+            //     `https://sandbox.vnpayment.vn/paymentv2/vpcpay.html?vnp_Amount=${tongtienDefault}&vnp_Command=pay&vnp_CreateDate=${moment().format(
+            //         'yyyyMMDDHHmmss',
+            //     )}&vnp_CurrCode=VND&vnp_IpAddr=127.0.0.1&vnp_Locale=vn&vnp_OrderInfo=Thanh+toan+don+hang+%3A5&vnp_OrderType=other&vnp_ReturnUrl=http://localhost:3001&vnp_TmnCode=X8NQNSUB&vnp_TxnRef=${new Date().getTime()}&vnp_Version=2.1.0&vnp_SecureHash=1bb1804b86d63557662c353e00e16df1eb80c2f36e989487cb2bb1225d7381b3e772e38fa25ef6de8f9f2369cc84121a9188d689f50ce32913d66b18b8eba424`,
+            // );
+            // httpRequest.post('/bills/create', bill);
+            // setLoading(true);
+            // setTimeout(() => {
+            //     localStorage.removeItem('idItems');
+            //     navigate('/dathangthanhcong');
+            // }, 500);
+
+            // let data;
+
+            // // eslint-disable-next-line prefer-const
+            // data = {
+            //     nameCustomer: hoTen,
+            //     email: email,
+            //     products: prodctIncart,
+            //     tongTien: tongtien,
+            // };
+            // httpRequest.post('/sendMail', { data }).then((response) => console.log(response.data));
         }
     };
     return (

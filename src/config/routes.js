@@ -8,6 +8,7 @@ const routes = {
     thanhtoan: '/thanhtoan',
     dathangthanhcong: '/dathangthanhcong',
     phanloai: '/phanloai/:gt',
+    paymentSucccess: '/paymentSucccess',
     PageNotFound: '/*',
 };
 

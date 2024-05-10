@@ -10,6 +10,7 @@ import ThungRac from '~/Pages/QuanLy/ThungRac';
 import ThanhToan from '~/Pages/ThanhToan';
 import DatHangThanhCong from '~/Pages/DatHangThanhCong';
 import PageNotFound from '~/Pages/404NotFound';
+import PaymentSuccess from '~/Pages/paymentSuccess/paymentSuccess';
 
 const publicRoutes = [
     { path: config.routes.home, component: Home },
@@ -20,6 +21,7 @@ const publicRoutes = [
     { path: config.routes.thungrac, component: ThungRac },
     { path: config.routes.dathangthanhcong, component: DatHangThanhCong },
     { path: config.routes.thanhtoan, component: ThanhToan },
+    { path: config.routes.paymentSucccess, component: PaymentSuccess },
     { path: config.routes.PageNotFound, component: PageNotFound },
 ];
 

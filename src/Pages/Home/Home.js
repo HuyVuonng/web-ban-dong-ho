@@ -145,13 +145,13 @@ function Home() {
                         </div>
                     </div>
 
-                    <div className={cx('news')}>
+                    {/* <div className={cx('news')}>
                         <NewItem />
                         <NewItem />
                         <NewItem />
-                    </div>
+                    </div> */}
 
-                    <div className={cx('dk')}>
+                    {/* <div className={cx('dk')}>
                         <div className={cx('dk-info')}>
                             <div className={cx('dk-name')}>
                                 <h2 className={cx('dk-title')}>ĐĂNG KÝ NHẬN THÔNG TIN</h2>
@@ -163,7 +163,7 @@ function Home() {
                                 </button>
                             </div>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         );

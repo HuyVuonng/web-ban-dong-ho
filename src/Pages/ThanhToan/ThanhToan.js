@@ -123,7 +123,9 @@ function ThanhToan() {
                 orderDescription: 'Thanh toan don hang tai Mona',
                 orderType: 'other',
             };
-            httpRequest.post('/create_payment_url', bodyPayment);
+            httpRequest.post('/create_payment_url', bodyPayment).then((res) => {
+                window.location.href = res.data.link;
+            });
             // console.log(moment().format('yyyyMMDDHHmmss'));
             // console.log(
             //     `https://sandbox.vnpayment.vn/paymentv2/vpcpay.html?vnp_Amount=${tongtienDefault}&vnp_Command=pay&vnp_CreateDate=${moment().format(

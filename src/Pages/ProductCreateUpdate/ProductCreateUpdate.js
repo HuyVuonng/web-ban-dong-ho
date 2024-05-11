@@ -1,18 +1,23 @@
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import { useEffect, useRef, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import httpRequest from '~/utils/httprequest';
 import classNames from 'classnames/bind';
 import styles from './ProductCreateUpdate.module.scss';
+import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
+import { imgToDb } from '~/utils/firebase';
+import Loadding from '~/Components/Loadding';
 const cx = classNames.bind(styles);
 
 function ProductCreateUpdate() {
     let productID = useParams();
     const [title, setTitle] = useState('Thêm sản phẩm');
     const [prevIMG, setPrevIMG] = useState();
+    const [isLoading, setIsLoading] = useState(false);
     const [product, setProduct] = useState({});
     const refForm = useRef();
+    const navigate = useNavigate();
     useEffect(() => {
         if (productID.id) {
             window.scrollTo(0, 0);
@@ -66,16 +71,85 @@ function ProductCreateUpdate() {
     };
 
     const xoaKhoangTrang = () => {
-        const inputs = document.querySelectorAll('input');
+        const inputs = document.querySelectorAll('input:not([type="file"])');
         document.querySelector('#decription').value = document.querySelector('#decription').value.trim();
         for (const input of inputs) {
-            input.value = input.value.trim();
+            input.value = input.value?.trim();
+        }
+    };
+    const resetForm = () => {
+        document.querySelector('#img').removeAttribute('disabled');
+        document.querySelector('#img2').removeAttribute('disabled');
+        setPrevIMG();
+        document.querySelector('form').reset();
+    };
+    const handelSaveData = () => {
+        xoaKhoangTrang();
+        setIsLoading(true);
+        const name = document.querySelector('#name').value;
+        const GioiTinh = document.querySelector('#GioiTinh').value;
+        const price = document.querySelector('#price').value;
+        const ThuongHieu = document.querySelector('#ThuongHieu').value;
+        const Decription = document.querySelector('#decription').value;
+        const SoLuong = document.querySelector('#SoLuong').value;
+        const img = document.querySelector('#img').files[0];
+        const img2 = document.querySelector('#img2').value;
+        const imgRef = ref(imgToDb, `images/${new Date().getTime()}`);
+        if (img) {
+            uploadBytes(imgRef, img).then((res) => {
+                getDownloadURL(res.ref).then((url) => {
+                    const data = {
+                        name,
+                        GioiTinh,
+                        price,
+                        ThuongHieu,
+                        Decription,
+                        SoLuong,
+                        img: url,
+                    };
+                    if (!productID.id) {
+                        httpRequest.post('products/create', data).then((response) => {
+                            setIsLoading(false);
+                            navigate('/quanly');
+                            resetForm();
+                        });
+                    } else {
+                        httpRequest.put(`products/${productID.id}/edit`, data).then((response) => {
+                            setIsLoading(false);
+                            navigate('/quanly');
+                        });
+                    }
+                });
+            });
+        } else {
+            const data = {
+                name,
+                GioiTinh,
+                price,
+                ThuongHieu,
+                Decription,
+                SoLuong,
+                img: img2 || product.img,
+            };
+            if (!productID.id) {
+                httpRequest.post('products/create', data).then((response) => {
+                    setIsLoading(false);
+                    navigate('/quanly');
+                    resetForm();
+                });
+            } else {
+                httpRequest.put(`products/${productID.id}/edit`, data).then((response) => {
+                    setIsLoading(false);
+                    navigate('/quanly');
+                });
+            }
         }
     };
 
     return (
         <div ref={refForm} className={cx('wraper-form')}>
-            <h1>{title}</h1>
+            {isLoading && <Loadding />}
+            <h1 className="text-[36px]">{title}</h1>
             {(() => {
                 if (product.GioiTinh) {
                     const select = document.querySelector('#GioiTinh');
@@ -88,13 +162,10 @@ function ProductCreateUpdate() {
                 }
             })()}
             <form
-                method="post"
-                action={
-                    !productID.id
-                        ? 'https://web-ban-dong-ho-be.onrender.com/products/create'
-                        : `https://web-ban-dong-ho-be.onrender.com/products/${productID.id}/edit?_method=PUT`
-                }
-                encType="multipart/form-data"
+                id="form"
+                onSubmit={(e) => {
+                    e.preventDefault();
+                }}
             >
                 <div className="mb-3 mt-4">
                     <label htmlFor="name" className="form-label">
@@ -244,7 +315,7 @@ function ProductCreateUpdate() {
                     {prevIMG && <img src={prevIMG.preview} alt="" width="20%" />}
                 </div>
 
-                <button type="submit" className="mb-5 btn btn-primary" onClick={xoaKhoangTrang}>
+                <button className="mb-5 btn btn-primary" onClick={handelSaveData}>
                     {productID.id ? 'Cập nhật' : 'Thêm sản phẩm'}
                 </button>
             </form>

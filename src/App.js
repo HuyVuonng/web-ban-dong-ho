@@ -10,12 +10,12 @@ function App() {
         let auth = { token: true };
         return auth.token ? <Outlet /> : <Navigate to="/" />;
     };
-    useEffect(() => {
-        if (load.current) {
-            alert('Do server backend phải khởi động nên lần đầu load sẽ hơi lâu');
-            load.current = false;
-        }
-    }, []);
+    // useEffect(() => {
+    //     if (load.current) {
+    //         alert('Do server backend phải khởi động nên lần đầu load sẽ hơi lâu');
+    //         load.current = false;
+    //     }
+    // }, []);
 
     return (
         <Router>

@@ -10,6 +10,7 @@
     .cart-content {
         display: grid;
         grid-template-columns: 8fr 4fr;
+        gap: 15px;
 
         .cart-product {
             .cart-productList-title {

@@ -81,6 +81,7 @@ function ThanhToan() {
         const email = document.querySelector(`#${cx('email')}`).value;
         const thanhPho = document.querySelector(`#${cx('thanhpho')}`).value;
         const diaChi = document.querySelector(`#${cx('diachi')}`).value;
+        const payment = document.querySelector(`#paymentSelect`).value;
         const prodBuy = productBuy;
         const tongTien = document.querySelector(`.${cx('thanhtoan-prods-tongtien-toanhoadon')}`).innerText;
         if (
@@ -118,51 +119,66 @@ function ThanhToan() {
                     daBan: daBan,
                 });
             }
-            const bodyPayment = {
-                amount: tongtienDefault,
-                orderDescription: 'Thanh toan don hang tai Mona',
-                orderType: 'other',
-            };
-            httpRequest.post('/create_payment_url', bodyPayment).then((res) => {
-                window.location.href = res.data.link;
-            });
-            // console.log(moment().format('yyyyMMDDHHmmss'));
-            // console.log(
-            //     `https://sandbox.vnpayment.vn/paymentv2/vpcpay.html?vnp_Amount=${tongtienDefault}&vnp_Command=pay&vnp_CreateDate=${moment().format(
-            //         'yyyyMMDDHHmmss',
-            //     )}&vnp_CurrCode=VND&vnp_IpAddr=127.0.0.1&vnp_Locale=vn&vnp_OrderInfo=Thanh+toan+don+hang+%3A5&vnp_OrderType=other&vnp_ReturnUrl=http://localhost:3001&vnp_TmnCode=X8NQNSUB&vnp_TxnRef=${new Date().getTime()}&vnp_Version=2.1.0&vnp_SecureHash=1bb1804b86d63557662c353e00e16df1eb80c2f36e989487cb2bb1225d7381b3e772e38fa25ef6de8f9f2369cc84121a9188d689f50ce32913d66b18b8eba424`,
-            // );
-            // httpRequest.post('/bills/create', bill);
-            // setLoading(true);
-            // setTimeout(() => {
-            //     localStorage.removeItem('idItems');
-            //     navigate('/dathangthanhcong');
-            // }, 500);
+            if (payment === '2') {
+                httpRequest.post('/bills/create', bill);
+                setLoading(true);
+                setTimeout(() => {
+                    localStorage.removeItem('idItems');
+                }, 500);
+                let data;
 
-            // let data;
+                // eslint-disable-next-line prefer-const
+                data = {
+                    nameCustomer: hoTen,
+                    email: email,
+                    products: prodctIncart,
+                    tongTien: tongtien,
+                };
+                httpRequest.post('/sendMail', { data }).then((response) => console.log(response.data));
 
-            // // eslint-disable-next-line prefer-const
-            // data = {
-            //     nameCustomer: hoTen,
-            //     email: email,
-            //     products: prodctIncart,
-            //     tongTien: tongtien,
-            // };
-            // httpRequest.post('/sendMail', { data }).then((response) => console.log(response.data));
+                const bodyPayment = {
+                    amount: tongtienDefault,
+                    orderDescription: 'Thanh toan don hang tai Mona',
+                    orderType: 'other',
+                };
+
+                httpRequest.post('/create_payment_url', bodyPayment).then((res) => {
+                    window.location.href = res.data.link;
+                });
+            } else {
+                httpRequest.post('/bills/create', bill);
+                setLoading(true);
+                setTimeout(() => {
+                    localStorage.removeItem('idItems');
+                    navigate('/dathangthanhcong');
+                }, 500);
+
+                let data;
+
+                // eslint-disable-next-line prefer-const
+                data = {
+                    nameCustomer: hoTen,
+                    email: email,
+                    products: prodctIncart,
+                    tongTien: tongtien,
+                };
+                httpRequest.post('/sendMail', { data }).then((response) => console.log(response.data));
+            }
         }
     };
     return (
         <main className={cx('thanhtoan-wrapper')}>
-            <h1 className={cx('thanhtoan-title')}>Thanh Toán</h1>
+            {/* <h1 className={cx('thanhtoan-title')}>Thanh Toán</h1> */}
             {loading && <Loadding />}
             <form
+                className="mt-[26px]"
                 onSubmit={(e) => {
                     e.preventDefault();
                 }}
             >
                 <div className={cx('thanhtoan-content')}>
                     <div className={cx('thanhtoan-address')}>
-                        <h4>Địa chỉ nhận hàng</h4>
+                        <h4 className="text-[26px]">Địa chỉ nhận hàng</h4>
                         <div className={cx('thanhtoan-hoten', 'thanhtoan-block')}>
                             <label htmlFor="name">Họ tên</label>
                             <input
@@ -220,9 +236,23 @@ function ThanhToan() {
                                 required
                             />
                         </div>
+                        <div className={cx('thanhtoan-diachi', 'thanhtoan-block')}>
+                            <label htmlFor="payment">Phương thức thanh toán</label>
+                            <select
+                                name="payment"
+                                type="text"
+                                id="paymentSelect"
+                                className={cx('thanhtoan-input')}
+                                defaultValue={1}
+                                required
+                            >
+                                <option value="1">Thanh toán khi nhận hàng</option>
+                                <option value="2">Thanh toán online</option>
+                            </select>
+                        </div>
                     </div>
                     <div className={cx('thanhtoan-prods')}>
-                        <h3 className={cx('thanhtoan-prods-title')}>Đơn hàng của bạn</h3>
+                        <h3 className="text-[26px]">Đơn hàng của bạn</h3>
                         <div className={cx('thanhtoan-prods-content')}>
                             <div className={cx('thanhtoan-prods-info')}>
                                 <span className={cx('thanhtoan-prods-sp')}>Sản phẩm</span>
